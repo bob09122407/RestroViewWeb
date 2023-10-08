@@ -1,0 +1,43 @@
+.app__menuitem {
+    width: 100%;
+    margin: 1rem 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app__menuitem-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .app__menuitem-sub {
+    width: 100%;
+    margin-top: 0.2rem;
+  }
+  
+  .app__menuitem-image img {
+    max-width: 100px; /* Adjust the width as needed */
+    max-height: 100px; /* Adjust the height as needed */
+    object-fit: cover; /* This property ensures the image retains its aspect ratio */
+    margin-right: 1rem; /* Add spacing between the image and other elements */
+  }
+  
+  .app__menuitem-name {
+    flex: 1;
+  }
+  
+  .app__menuitem-dash {
+    width: 90px;
+    height: 1px;
+    background: var(--color-golden);
+    margin: 0 1rem;
+  }
+  
+  .app__menuitem-price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  

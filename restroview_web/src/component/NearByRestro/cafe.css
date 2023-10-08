@@ -1,0 +1,134 @@
+/* restaurant.css */
+
+.restaurant-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    max-width: 1800px;
+    overflow-x: hidden;
+  }
+  
+  .restaurant-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+    margin-bottom: 20px;
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between; /* Spread items to both ends */
+    align-items: center;
+    width: 148%;
+  }
+  
+  .header-section {
+    flex-grow: 1; /* Allow each section to grow equally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .h2 {
+    margin: 0; /* Remove margin for h2 element */
+  }
+  
+  .restaurant-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap into new rows */
+    max-width: 1000px; /* Adjust the width of the container as needed */
+    gap: 15px;
+    justify-content: center; /* Center the cards horizontally within the container */
+  }
+  
+  .card {
+    /* Adjust card styles as needed */
+    flex-basis: calc(25% - 7.5px); /* Set each card to occupy 25% of the container width with equal spacing on both sides */
+    /* You can adjust the width as needed */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  /* Adjust button and card styles as needed */
+  
+  .switch1 {
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 2rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 2rem;
+    transition: all 0.3s linear;
+  }
+  
+  .switch1::after {
+    content: "";
+    position: absolute;
+    top: .1rem;
+    left: .1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all 0.3s linear;
+  }
+  
+  
+  input[type="checkbox"]:checked + .switch1:after {
+    translate: 2rem 0;
+  }
+  
+  input[type="checkbox"]:checked + .switch1 {
+    background-color: #7983ff;
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* restaurant.css */
+  
+  /* Add your other styles here */
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+  }
+  
+  .pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  

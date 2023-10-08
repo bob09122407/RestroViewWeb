@@ -1,0 +1,46 @@
+/* splashscreen.css */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255); /* Semi-transparent background */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    z-index: 999;
+  }
+  
+  .splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .splash-content {
+    text-align: center;
+    color: white;
+  }
+  
+  .logo {
+    max-width: 100%;
+    width: 200px; /* Adjust the logo size as needed */
+    opacity: 0;
+    transform: scale(0.5); /* Start with a smaller size */
+    animation: logoAnimation 3s ease-out;
+  }
+  
+  @keyframes logoAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(2);
+    }
+  }
+  

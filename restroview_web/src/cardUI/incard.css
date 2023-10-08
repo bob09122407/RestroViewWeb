@@ -1,0 +1,125 @@
+.cardin{
+    top: 80px;
+    position: relative;
+    width: 270px;
+    height: 190px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+    transition: 0.5s;
+    z-index: 2;
+    margin: 26px !important;
+}
+
+.cardin:hover{
+    height: 390px;
+}
+
+.imgBxin{
+    position: absolute;
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+    width: 230px;
+    height: 150px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+    overflow: hidden;
+    transition: 0.5s;
+}
+.cardin:hover .imgBxin{
+    width: 190px;
+    height: 190px;
+}
+
+.imgBxin img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardin .contentin{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.cardin .contentin .detailsin{
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(150px);
+}
+.cardin:hover .contentin .detailsin{
+    transform: translateY(0px);
+
+}
+
+.cardin .contentin .detailsin h2{
+    font-size: 1.25em;
+    font-weight:600 ;
+    color: #555;
+    line-height: 1.2em;
+}
+
+.cardin .contentin .detailsin h2 span{
+    font-size:0.75em;
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.cardin .contentin .detailsin .data
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.cardin .contentin .detailsin .data h3
+{
+    font-size: 1em;
+    color: #555;
+    line-height: 1.2em;
+    font-weight: 600;
+}
+
+.cardin .contentin .detailsin .data h3 span{
+    font-size: 0.85em;
+    font-weight:400;
+    opacity: 0.5;
+}
+
+.cardin .contentin .detailsin .actionbtn
+{
+   display: flex;
+   justify-content: space-between;
+   /* gap: 20px; */
+}
+
+.cardin .contentin .detailsin .actionbtn button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size:1em ;
+    font-weight: 500;
+    background: #ff5f95;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cardin .contentin .detailsin .actionbtn button:nth-child(2)
+{
+    border: 1px solid #999;
+    color: #999;
+    background: #fff;
+}

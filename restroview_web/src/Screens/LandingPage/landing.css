@@ -1,0 +1,86 @@
+/* landing.css */
+
+/* landing.css */
+
+.landing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color:#555; /* Background color */
+    position: relative; /* Add this to make the gradient circle absolute */
+    z-index: 2;
+  }
+
+  
+  .content-container {
+    flex: 1;
+    text-align: center;
+    padding: 2rem;
+
+  }
+  
+  /* ... Rest of your CSS styles ... */
+  
+
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333; /* Text color */
+  }
+  
+  .type{
+    border-right: 2px solid #333; /* Typing cursor */
+    animation: blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #333;
+    }
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #555; /* Text color */
+    margin-top: 1rem;
+  }
+  
+  .explore-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #ff5722; /* Button color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .explore-button:hover {
+    background-color: #ff7043; /* Hovered button color */
+  }
+  
+  .lottie-container {
+    width: 30%; /* Adjust animation width as needed */
+    height: auto;
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .landing-container {
+      flex-direction: column;
+      padding: 2rem;
+    }
+  
+    .lottie-container {
+      width: 70%; /* Adjust animation width for smaller screens */
+    }
+  }
+  
+  
