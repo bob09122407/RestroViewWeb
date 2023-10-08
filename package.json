@@ -1,0 +1,20 @@
+{
+  "name": "restroview_website",
+  "version": "1.0.0",
+  "description": "restroview backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bob09122407/RestroViewWeb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bob09122407/RestroViewWeb/issues"
+  },
+  "homepage": "https://github.com/bob09122407/RestroViewWeb#readme"
+}
