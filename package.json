@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/bob09122407/RestroViewWeb/issues"
   },
-  "homepage": "https://github.com/bob09122407/RestroViewWeb#readme"
+  "homepage": "https://github.com/bob09122407/RestroViewWeb#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.6.0"
+  }
 }
