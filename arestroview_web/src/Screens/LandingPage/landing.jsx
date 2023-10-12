@@ -4,6 +4,43 @@ import animationData from './foods.json'; // Replace with your animation file
 import './landing.css'; // Add your styles
 import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa'; // Import React Icons
 
+const TypingText = () => {
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const text = 'Welcome to RestroView';
+    let index = 0;
+    let loopInterval;
+
+    const typeText = () => {
+      if (textRef.current) {
+        textRef.current.textContent = text.slice(0, index);
+      }
+      index++;
+
+      if (index <= text.length) {
+        loopInterval = setTimeout(typeText, 100); // Adjust typing speed here
+      } else {
+        // Restart the typing animation after a delay (e.g., 1000ms)
+        setTimeout(() => {
+          index = 0;
+          loopInterval = setTimeout(typeText, 100);
+        }, 1000); // Adjust the delay before restarting the animation
+      }
+    };
+
+    // Start the typing animation
+    loopInterval = setTimeout(typeText, 1000); // Initial delay before starting the animation
+
+    // Cleanup and clear the loopInterval when the component unmounts
+    return () => {
+      clearTimeout(loopInterval);
+    };
+  }, []);
+
+  return <span ref={textRef}></span>;
+};
+
 const LandingPage = () => {
   const animationContainerRef = useRef(null);
 
@@ -25,61 +62,34 @@ const LandingPage = () => {
   }, []);
 
   return (
-
     <div className="landing-container gradient-circle">
-    <div className="content-container">
-      <div className="left-content">
-        <h1 className="welcome-text">
-         <TypingText/>
-        </h1>
-        
-        <p className="tagline">We serve what you deserve</p>
-        <div className="social-icons">
-          <a href="#" className="icon">
-            <FaInstagram />
-          </a>
-          <a href="#" className="icon">
-            <FaYoutube />
-          </a>
-          <a href="#" className="icon">
-            <FaFacebook />
-          </a>
-        </div>
-      </div>
-      <p className="subtitle">Your Destination for Delicious Food</p>
-      <a href="#" className="explore-button">
+      <div className="content-container">
+        <div className="left-content">
+          <h1 className="welcome-text">
+            <TypingText />
+          </h1>
+          <p className="tagline">We serve what you deserve</p>
+          <div className="social-icons">
+            <a href="#" className="icon">
+              <FaInstagram />
+            </a>
+            <a href="#" className="icon">
+              <FaYoutube />
+            </a>
+            <a href="#" className="icon">
+              <FaFacebook />
+            </a>
+          </div>
+          <p className="subtitle">Your Destination for Delicious Food</p>
+      <a href="/home" className="explore-button">
         Explore
       </a>
+        </div>
+      </div>
+      <div className="lottie-container" ref={animationContainerRef}></div>
+     
     </div>
-    <div className="lottie-container" ref={animationContainerRef}></div>
-  </div>
-  
-    );
+  );
 };
-
-const TypingText = () => {
-  const textRef = useRef(null);
-
-  useEffect(() => {
-    const text = 'Welcome to RestroView';
-    let index = 0;
-
-    const typeText = () => {
-      if (textRef.current) { // Check if textRef.current exists
-        textRef.current.textContent = text.slice(0, index);
-      }
-      index++;
-
-      if (index <= text.length) {
-        setTimeout(typeText, 100); // Adjust typing speed here
-      }
-    };
-
-    setTimeout(typeText, 1000); // Delay the typing effect by 1 second
-  }, []);
-
-  return <span ref={textRef}></span>;
-};
-
 
 export default LandingPage;

@@ -49,3 +49,22 @@
         width: 80%;
     }
 }
+
+
+.slideshow-content {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.5s ease; /* Add a transition effect to the transform property */
+    padding-top: 5rem;
+  }
+  
+
+  
+  /* Adjust the width based on the number of slides you have */
+ 
+  
+  /* Adjust the transform value based on the current slide index */
+  .slideshow-content {
+    transform: translateX(calc(-50% * var(--currentSlide, 0))); /* Adjust -50% based on the number of slides */
+  }
+  

@@ -24,7 +24,7 @@ const Card = ({ name, title, frontImage,rating, image, description }) => {
 
             <div className="row">
               <button>Follow</button>
-              <button>Details</button>
+              <button >Details</button>
             </div>
           </div>
         </div>

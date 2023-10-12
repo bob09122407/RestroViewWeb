@@ -1,30 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-// import Navbar from "./component/Layout/Navbar/navbar.jsx";
-// import Reels from "./component/Reels/reels.jsx";
-// import Loading from './component/Loading/loading.jsx';
+import Navbar from "./component/Layout/Navbar/navbar.jsx";
+import Reels from "./component/Reels/reels.jsx";
+import Loading from './component/Loading/loading.jsx';
 import SplashScreen from "./component/splash/splash.jsx";
-// import LandingPage from "./Screens/LandingPage/landing.jsx";
-// import Card from "./cardUI/card.jsx";
+import LandingPage from "./Screens/LandingPage/landing.jsx";
 import Home from "./component/Home/home.jsx";
 import Footer from "./component/Layout/Footer/footer.jsx";
-// import Signup from "./component/users/Register/register.jsx";
+import Signup from "./component/users/Register/register.jsx";
 import Filter from "./component/InsideRestro/inrestro.jsx";
-// import Incard from "./cardUI/incard.jsx";
+import Vendors from "./Screens/LandingPage/Vendors/vendors.jsx";
 import Detailsrestro from "./Screens/LandingPage/DetailsRestro/detailsrestro.jsx";
-import Intro from "./Screens/LandingPage/DetailsRestro/detailsrestro.jsx";
+
+
 const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    // Automatically hide the splash screen after a delay (e.g., 3 seconds)
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 3000); // Adjust the delay as needed
+  }, []);
+
   return (
     <Router>
-      {/* <NavbarConditionally /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/reels" element={<SplashScreen />} />
-        <Route path="/vendors" element={<Detailsrestro />} />
-        <Route path="/portfolio" element={<Intro/>} />
-        <Route path="/signup" element={<Filter />} />    {/*filter mein raring filter add karna hai*/}
-      </Routes>
-      <FooterConditionally />
+      {showSplash ? (
+        <SplashScreen />
+      ) : (
+        <>
+          <NavbarConditionally />
+          <Routes>
+          <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/reels" element={<Reels />} />
+            <Route path="/vendors" element={<Vendors />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/restrodetails" element={<Detailsrestro />} />
+            <Route path="/filters" element={<Filter />} />
+          </Routes>
+          <FooterConditionally />
+        </>
+      )}
     </Router>
   );
 };
@@ -32,22 +49,21 @@ const App = () => {
 const FooterConditionally = () => {
   const location = useLocation();
 
-  // Check if the current location is "/reels" and conditionally render the footer
-  if (location.pathname === "/") {
-    return null; // Don't render the footer on the "/reels" route
+  if (location.pathname === "/reels") {
+    return null;
   }
 
   return <Footer />;
 };
-// const NavbarConditionally = () => {
-//   const location = useLocation();
 
+const NavbarConditionally = () => {
+  const location = useLocation();
 
-//   if (location.pathname === "/reels") {
-//     return null; 
-//   }
+  if (location.pathname === "/") {
+    return null;
+  }
 
-//   return <Navbar />;
-// };
+  return <Navbar />;
+};
 
 export default App;
