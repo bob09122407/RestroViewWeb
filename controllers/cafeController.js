@@ -1,40 +1,40 @@
 const Cafe = require('../models/cafeModel');
 
-// Create a new Cafe
+// Create a new restaurant
 exports.createCafe = async (req, res) => {
   try {
-    const Cafe = new Cafe(req.body);
-    const savedCafe = await Cafe.save();
+    const cafe = new Cafe(req.body);
+    const savedCafe = await cafe.save();
     res.status(201).json(savedCafe);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// Get all Cafes
+// Get all restaurants
 exports.getAllCafes = async (req, res) => {
   try {
-    const Cafes = await Cafe.find();
-    res.json(Cafes);
+    const cafes = await Cafe.find();
+    res.json(cafes);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Get a specific Cafe by ID
+// Get a specific restaurant by ID
 exports.getCafeById = async (req, res) => {
   try {
-    const Cafe = await Cafe.findById(req.params.id);
-    if (!Cafe) {
+    const cafe = await Cafe.findById(req.params.id);
+    if (!cafe) {
       return res.status(404).json({ error: 'Cafe not found' });
     }
-    res.json(Cafe);
+    res.json(cafe);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Update a Cafe by ID
+// Update a restaurant by ID
 exports.updateCafe = async (req, res) => {
   try {
     const updatedCafe = await Cafe.findByIdAndUpdate(
@@ -51,7 +51,7 @@ exports.updateCafe = async (req, res) => {
   }
 };
 
-// Delete a Cafe by ID
+// Delete a cafe by ID
 exports.deleteCafe = async (req, res) => {
   try {
     const deletedCafe = await Cafe.findByIdAndDelete(req.params.id);

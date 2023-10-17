@@ -49,7 +49,7 @@ const App = () => {
 const FooterConditionally = () => {
   const location = useLocation();
 
-  if (location.pathname === "/reels") {
+  if (location.pathname === "/reels" || location.pathname==="/filters") {
     return null;
   }
 
@@ -59,7 +59,7 @@ const FooterConditionally = () => {
 const NavbarConditionally = () => {
   const location = useLocation();
 
-  if (location.pathname === "/") {
+  if (location.pathname === "/reels") {
     return null;
   }
 

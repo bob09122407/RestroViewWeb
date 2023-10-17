@@ -11,6 +11,7 @@ exports.createRestaurant = async (req, res) => {
   }
 };
 
+
 // Get all restaurants
 exports.getAllRestaurants = async (req, res) => {
   try {

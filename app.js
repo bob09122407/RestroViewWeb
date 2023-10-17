@@ -15,12 +15,17 @@ const user= require("./routes/userRoutes");
 const restaurant= require("./routes/restaurantRoutes");
 const cafes= require("./routes/cafeRoutes");
 const vendors= require("./routes/vendorRoute");
-
+const advertisement=require("./routes/advertisementRoute");
+const filter=require("./routes/filterRoutes");
+const openmap=require("./routes/mapRoute");
 //give the route to the api
 app.use("/api/v1", user);
 app.use("/api/v1",restaurant);
 app.use("/api/v1",cafes);
 app.use("/api/v1",vendors);
+app.use("/api/v1", advertisement);
+app.use("/api/v1", filter);
+app.use("/api/v1", openmap);
 
 app.get('*',(req,res,next)=>{
     res.status(200).json({

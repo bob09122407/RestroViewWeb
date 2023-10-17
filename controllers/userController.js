@@ -7,14 +7,18 @@ const isAuthenticatedUser = require("../middleware/auth.js");
 //regiter user with jwt token
 exports.registerUser = catchAsyncError(async(req, res, next)=>{
 
-    const {name, email, password} = req.body    ;
+    if (!name || !email || !password) {
+        return next(new ErrorHandler("Please enter a valid name, email, and password", 400));
+      }
+      
+    const {name, email, password} = req.body;
 
-   const user= await User.create({
+    const user= await User.create({
     name,
     email,
     password,
    });
-   sendToken(user, 201, res);
+   sendToken(user, 200, res);
 })
 
 
@@ -70,6 +74,10 @@ exports.updatePassword=catchAsyncError(async(req, res, next)=>{
 
     const user= await User.findById(req.user.id).select("+password");
 
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }    
+
     const isPasswordMatched = user.comparePassword(req.body.oldPassword);
 
     if(!isPasswordMatched){
@@ -89,7 +97,7 @@ sendToken(user, 200, res);
 
 //logout
 exports.logout = catchAsyncError(async (req, res, next) => {
-    res.cookie("token", null, {
+    res.cookie("validtoken", null, {
       expires: new Date(Date.now()),
       httpOnly: true,
     });

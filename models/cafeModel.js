@@ -5,7 +5,20 @@ const cafeSchema = new mongoose.Schema({
     type: String,
     required: [true,"Please give the name of a restaurant"],
   },
-  video:[
+  main_image:
+    {
+        public_id:{
+          type:String,
+          required:true,
+        },
+        url:{
+          type:String,
+          required:true,
+        },
+    },
+
+
+  video:
         {
             public_id:{
                 type:String,
@@ -15,9 +28,9 @@ const cafeSchema = new mongoose.Schema({
                 type:String,
                 required:true,
             }
-        }
+        },
       
-    ],
+    
   description: String,
   address: {
     street: String,
@@ -43,7 +56,7 @@ const cafeSchema = new mongoose.Schema({
       category: String,
       description: String,
       price: Number,
-      img:[
+      img:
         {
             public_id:{
                 type:String,
@@ -54,7 +67,6 @@ const cafeSchema = new mongoose.Schema({
                 required:true,
             }
         }
-      ]
     },
   ],
   special_daymenu: [
@@ -161,6 +173,11 @@ const cafeSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  city:{
+    type:String,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model('Cafe', cafeSchema);

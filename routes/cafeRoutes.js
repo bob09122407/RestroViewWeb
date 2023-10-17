@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CafeController = require('../controllers/cafesController');
+const CafeController = require('../controllers/cafeController');
 
 
 router.post('/createCafes', CafeController.createCafe);

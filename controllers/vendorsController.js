@@ -3,8 +3,8 @@ const Vendor = require('../models/vendorModel');
 // Create a new Vendor
 exports.createVendor = async (req, res) => {
   try {
-    const Vendor = new Vendor(req.body);
-    const savedVendor = await Vendor.save();
+    const vendor = new Vendor(req.body);
+    const savedVendor = await vendor.save();
     res.status(201).json(savedVendor);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -14,8 +14,8 @@ exports.createVendor = async (req, res) => {
 // Get all Vendors
 exports.getAllVendors = async (req, res) => {
   try {
-    const Vendors = await Vendor.find();
-    res.json(Vendors);
+    const vendors = await Vendor.find();
+    res.json(vendors);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -24,11 +24,11 @@ exports.getAllVendors = async (req, res) => {
 // Get a specific Vendor by ID
 exports.getVendorById = async (req, res) => {
   try {
-    const Vendor = await Vendor.findById(req.params.id);
-    if (!Vendor) {
+    const vendor = await Vendor.findById(req.params.id);
+    if (!vendor) {
       return res.status(404).json({ error: 'Vendor not found' });
     }
-    res.json(Vendor);
+    res.json(vendor);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

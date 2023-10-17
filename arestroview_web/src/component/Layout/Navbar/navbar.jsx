@@ -18,7 +18,7 @@ const Navbar = () => {
             <nav className="nav1 container">
                 <div className="nav__left">
                     <Link to="/" className="nav__logo">
-                        <img src={Logo} alt="Logo" />
+                        {/* <img src={Logo} alt="Logo" /> */}
                     </Link>
                     <div className="nav__user-city_">
                         <div className="nav__item_ nav__dropdown_">

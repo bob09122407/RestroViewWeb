@@ -1,11 +1,28 @@
 const mongoose = require('mongoose');
 
+// Add this code to create a geospatial index in your model file
+
+
+
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true,"Please give the name of a restaurant"],
   },
-  video:[
+  main_image:
+    {
+        public_id:{
+          type:String,
+          required:true,
+        },
+        url:{
+          type:String,
+          required:true,
+        },
+    },
+
+
+  video:
         {
             public_id:{
                 type:String,
@@ -15,17 +32,24 @@ const restaurantSchema = new mongoose.Schema({
                 type:String,
                 required:true,
             }
-        }
+        },
       
-    ],
+    
   description: String,
   address: {
     street: String,
     city: String,
     state: String,
     zipCode: String,
-    longitude:String,
-    lattitude:String,
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
+    
   },
   ratings: {
     average: {
@@ -43,7 +67,7 @@ const restaurantSchema = new mongoose.Schema({
       category: String,
       description: String,
       price: Number,
-      img:[
+      img:
         {
             public_id:{
                 type:String,
@@ -54,7 +78,6 @@ const restaurantSchema = new mongoose.Schema({
                 required:true,
             }
         }
-      ]
     },
   ],
   special_daymenu: [
@@ -161,6 +184,12 @@ const restaurantSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  city:{
+    type:String,
+    required: true,
+  }
 });
 
+restaurantSchema.index({ 'address': '2dsphere' });
 module.exports = mongoose.model('Restaurant', restaurantSchema);
