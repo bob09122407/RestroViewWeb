@@ -19,7 +19,7 @@ const restaurants = [
     imageSrc: Bobby,
   },
   {
-    name: 'Restaurant 1',
+    name: 'Restaurant 2',
     jobTitle: 'Cuisine Type 1',
     followers: 100,
     open: 100,
@@ -27,7 +27,7 @@ const restaurants = [
     imageSrc: Bobby,
   },
   {
-    name: 'Restaurant 1',
+    name: 'Restaurant 3',
     jobTitle: 'Cuisine Type 1',
     followers: 100,
     open: 100,
@@ -247,6 +247,7 @@ const Sidebar = () => {
             <li key={filter}>
               <a
                 href="#"
+                class="under"
                 className={selectedFilter === filter ? "active" : ""}
                 onClick={() => handleClickFilter(filter)}
               >
@@ -262,6 +263,7 @@ const Sidebar = () => {
           {vegNonvegFilters.map((filter) => (
             <li key={filter}>
               <a
+              class="under"
                 href="#"
                 className={selectedFilter === filter ? "active" : ""}
                 onClick={() => handleClickFilter(filter)}
@@ -277,8 +279,7 @@ const Sidebar = () => {
         <ul>
           {TimeFilters.map((filter) => (
             <li key={filter}>
-              <a
-                href="#"
+              <a class="under" href="#"
                 className={selectedFilter === filter ? "active" : ""}
                 onClick={() => handleClickFilter(filter)}
               >

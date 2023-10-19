@@ -160,3 +160,16 @@
   .iconss{
     color: rgb(211, 211, 211);
   }
+
+  .a_footer {
+    text-decoration: none;
+  }
+
+  .e_mail{
+    /* position: absolute; */
+    margin-right: 150px;
+  }
+
+  .submit_btn{
+    margin-right: 100px;
+  }

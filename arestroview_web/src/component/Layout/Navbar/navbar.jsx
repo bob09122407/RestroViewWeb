@@ -27,10 +27,10 @@ const Navbar = () => {
                             </div>
                             <span className="nav__selected-city">{selectedCity}</span>
                             <ul className="nav__dropdown-menu_ nav__dropdown-menu-above_">
-                                <li><a href="#" onClick={() => handleCitySelect('Vadodara')}>Vadodara</a></li>
-                                <li><a href="#" onClick={() => handleCitySelect('Mumbai')}>Mumbai</a></li>
-                                <li><a href="#" onClick={() => handleCitySelect('Surat')}>Surat</a></li>
-                                <li><a href="#" onClick={() => handleCitySelect('Akola')}>Akola</a></li>
+                                <li><a class="city_name" href="#" onClick={() => handleCitySelect('Vadodara')}>Vadodara</a></li>
+                                <li><a class="city_name" href="#" onClick={() => handleCitySelect('Mumbai')}>Mumbai</a></li>
+                                <li><a class="city_name" href="#" onClick={() => handleCitySelect('Surat')}>Surat</a></li>
+                                <li><a class="city_name" href="#" onClick={() => handleCitySelect('Akola')}>Akola</a></li>
                             </ul>
                         </div>
                     </div>

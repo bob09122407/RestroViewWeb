@@ -88,3 +88,18 @@
   background: #FF4500; /* Change the background color on hover */
   transform: scale(1.05); /* Add a slight scale effect on hover */
 }
+
+@media screen and (max-width: 1000px){
+  .content-container{
+    /* display: block; */
+    margin-bottom: 250px;
+  }
+  .landing-container{
+    flex-direction: column;
+
+  }
+  .left-content {
+    position: absolute;
+    top: 100px;
+  }
+}

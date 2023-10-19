@@ -92,6 +92,13 @@ img {
     display: none;
   }
   
+.nav__selected-city{
+  color: white;
+}
+
+.nav__icon-dropdown_{
+  color: white;
+}
 
 .section__title {
   font-size: var(--h1-font-size);
@@ -193,6 +200,7 @@ img {
   row-gap: 4px;
   color: white;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .nav__list {
@@ -402,7 +410,7 @@ img {
       .nav__dropdown-menu {
         position: absolute;
         top: 100%;
-        left: -30px;
+        left: -45px;
         background-color: var(--container-color);
         box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
         border-radius: 10px;
@@ -411,6 +419,7 @@ img {
         transform: scaleY(0);
         transform-origin: top;
         transition: all 0.3s ease;
+        width: 120px;
       }
       
       .nav__item.nav__dropdown:hover .nav__dropdown-menu {
@@ -436,4 +445,16 @@ img {
       
   }
   
- 
+.city_name{
+  text-decoration: none;
+  color: black;
+}
+
+.nav__dropdown-menu{
+  text-align: center !important;
+  margin: 0px;
+}
+
+ol, ul{
+  padding-left: 0 !important;
+}
