@@ -65,9 +65,10 @@ const LandingPage = () => {
     <div className="landing-container gradient-circle">
       <div className="content-container">
         <div className="left-content">
-          <h1 className="welcome-text">
+          <span className="welcome-text">
             <TypingText />
-          </h1>
+          </span>
+          <span className="random_text">a</span>
           <p className="tagline">We serve what you deserve</p>
           <div className="social-icons">
             <a href="#" className="icon">

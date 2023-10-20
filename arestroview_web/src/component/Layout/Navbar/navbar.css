@@ -249,7 +249,8 @@ img {
 
 .nav__login-icon{
       margin: 2rem;
-    
+      position: relative;
+      top: -8px;
 }
 .nav__icon-plus_ {
     font-size: 1.5rem;
