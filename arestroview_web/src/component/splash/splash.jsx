@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './splashscreen.css';
-import Logo from "./logo.jpg";
+import Logo from "./logo.png";
 
 function SplashScreen() {
   const [showSplash, setShowSplash] = useState(true);

@@ -217,10 +217,11 @@
     color: #fff;
   }
 
-  .under{
+  .under {
     text-decoration: none;
     color: white;
   }
+
 
 
 
@@ -358,4 +359,23 @@ input[type="range"]::-moz-range-thumb{
   
   a{
     text-decoration: none;
+    color:white;
+  }
+
+  .food-filter a{
+    text-decoration: none;
+    color:white;
+  }
+
+  .veg-nonveg a{
+    text-decoration: none;
+    color:white;
+  }
+
+  .food-filter, .veg-nonveg{
+    padding: 0 2rem 0 2rem;
+  }
+
+  .food-filter h3, .veg-nonveg h3{
+    padding-bottom: 1.2rem;
   }
