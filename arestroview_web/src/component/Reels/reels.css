@@ -36,4 +36,11 @@
     object-fit: contain;
   }
 
+  .bobby{
+    position: absolute;
+    left: 70em;
+    color: brown;
+    z-index: 2;
+  }
+
   

@@ -1,7 +1,7 @@
 // src/components/Video.js
 import React, { useRef, useEffect } from 'react';
 import './reels.css'; // Import the CSS file for styling
-
+import { BiHomeAlt} from 'react-icons/bi';
 const Video = ({ src, isActive, username, likes, shares }) => {
   const videoRef = useRef(null);
 
@@ -20,6 +20,7 @@ const Video = ({ src, isActive, username, likes, shares }) => {
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <span className='bobby'><BiHomeAlt/></span>
   
     </div>
   );
