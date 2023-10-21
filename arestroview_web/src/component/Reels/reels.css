@@ -36,11 +36,11 @@
     object-fit: contain;
   }
 
-  .bobby{
-    position: absolute;
-    left: 70em;
-    color: brown;
-    z-index: 2;
-  }
 
+.home-icon{
+  position: relative; 
+  left: 20em;
+  bottom: 20em;
+  z-index: 2;
+}
   

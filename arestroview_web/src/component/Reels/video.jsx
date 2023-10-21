@@ -18,11 +18,16 @@ const Video = ({ src, isActive, username, likes, shares }) => {
 
   return (
     <div className={`video ${isActive ? 'active' : ''}`}>
+     
       <video autoPlay loop controls ref={videoRef}>
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-  
+       <div className="icon-home">
+        
+          <BiHomeAlt  className="home-icon" color='red' size="40px"/>
+        
+       </div>
     </div>
   );
 };
