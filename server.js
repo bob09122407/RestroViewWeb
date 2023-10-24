@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   connectDatabase();
 
   const server=app.listen(process.env.PORT,()=>{
-    console.log(`Server is running on https://localhost:${process.env.PORT}`);
+    console.log(`Server is running on http://localhost:${process.env.PORT}`);
   });
 
 
@@ -27,6 +27,6 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     
     server.close(()=>{
         process.exit(1);
-      })
-  })
+      });
+  });
  

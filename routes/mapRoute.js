@@ -7,4 +7,4 @@ const { openGoogleMaps } = require('../utils/googlemapapi'); // Replace with the
 router.get('/open-google-maps', openGoogleMaps);
 
 // Export the router
-module.exports = router;
+module.exports = router; 

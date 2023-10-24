@@ -6,12 +6,11 @@ const isAuthenticatedUser = require("../middleware/auth.js");
 
 //regiter user with jwt token
 exports.registerUser = catchAsyncError(async(req, res, next)=>{
+    const {name, email, password} = req.body;
 
     if (!name || !email || !password) {
         return next(new ErrorHandler("Please enter a valid name, email, and password", 400));
       }
-      
-    const {name, email, password} = req.body;
 
     const user= await User.create({
     name,

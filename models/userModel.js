@@ -24,6 +24,22 @@ const userSchema= new mongoose.Schema({
         minLength:[7, "Password must be of 7 or more than 7 characters"],
         select: false,
     },
+    followingRestaurantsCafe: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'RestaurantOrCafe', // Reference to your restaurant or cafe model
+      },
+    ],
+  
+
+    notifications: [
+      {
+        content: String, // Notification content
+        timestamp: Date, // Timestamp of the notification
+        image: String, // URL or file path of the image associated with the notification
+      },
+    ],
+  
 
     resetPasswordToken: String,
     resetPasswordExpire: Date,

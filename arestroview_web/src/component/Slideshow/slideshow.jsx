@@ -1,55 +1,42 @@
-import { useEffect } from "react";
-import { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import "./slideshow.css";
-import Logo from "../../assests/Gotham-Font/Gotham-Font/images/im1.jpg";
-import Logo1 from "../../assests/Gotham-Font/Gotham-Font/images/im2.jpg";
-import Logo2 from "../../assests/Gotham-Font/Gotham-Font/images/im3.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useCity } from '../../CityContext';
+import { getRestaurantAdvertisements } from '../../actions/advertisementAction';
 
-const Carousel = () => { // Accept a title prop
-
-  const images = [
-    {
-      image: Logo, // Use the imported image directly
-      title: "Brazil",
-    },
-    {
-      image: Logo1, // Use the imported image directly
-      title: "China",
-    },
-    {
-      image: Logo2, // Use the imported image directly
-      title: "France",
-    },
-    {
-      image: Logo, // Use the imported image directly
-      title: "Japan",
-    },
-    {
-      image: Logo, // Use the imported image directly
-      title: "Norway",
-    },
-  ];
+const Carousel = () => {
 
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   let timeOut = null;
+  const dispatch = useDispatch();
+  const { selectedCity } = useCity();
+  const { advertisements, loading, error } = useSelector((state) => state.restaurantAdvertisementReducer);
 
   useEffect(() => {
+    dispatch(getRestaurantAdvertisements(selectedCity));
+
     timeOut =
       autoPlay &&
       setTimeout(() => {
         slideRight();
-      }, 2500);
-  });
+      }, 500);
+  }, [dispatch, selectedCity]);
 
   const slideRight = () => {
-    setCurrent(current === images.length - 1 ? 0 : current + 1);
+    setCurrent(current === (advertisements?.length - 1) ? 0 : current + 1);
   };
 
   const slideLeft = () => {
-    setCurrent(current === 0 ? images.length - 1 : current - 1);
+    setCurrent(current === 0 ? (advertisements?.length - 1) : current - 1);
   };
-  console.log(current);
+
+  if (error) {
+    // Handle error state (e.g., show an error message)
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div
       className="carousel"
@@ -61,23 +48,20 @@ const Carousel = () => { // Accept a title prop
         setAutoPlay(true);
       }}
     >
-      
       <div className="carousel_wrapper">
-        {images.map((image, index) => {
+        {advertisements?.map((advertisement, index) => {
           return (
-            /* (condition) ? true : false */
-
             <div
               key={index}
               className={
-                index == current
+                index === current
                   ? "carousel_card carousel_card-active"
                   : "carousel_card"
               }
             >
-              <img className="card_image" src={image.image} alt="" />
+              <img className="card_image" src={advertisement.image.url} alt="" /> {/* Use image URL from advertisement model */}
               <div className="card_overlay">
-                <h2 className="card_title">{image.title}</h2>
+                <h2 className="card_title">{advertisement.restaurantName}</h2> {/* Use restaurantName from advertisement model */}
               </div>
             </div>
           );
@@ -89,12 +73,12 @@ const Carousel = () => { // Accept a title prop
           &rsaquo;
         </div>
         <div className="carousel_pagination">
-          {images.map((_, index) => {
+          {advertisements?.map((_, index) => {
             return (
               <div
                 key={index}
                 className={
-                  index == current
+                  index === current
                     ? "pagination_dot pagination_dot-active"
                     : "pagination_dot"
                 }
@@ -104,15 +88,8 @@ const Carousel = () => { // Accept a title prop
           })}
         </div>
       </div>
-       {/* Display the title prop */}
     </div>
   );
 }
 
 export default Carousel;
-
-
-
-
-
-

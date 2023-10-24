@@ -9,6 +9,11 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: [true,"Please give the name of a restaurant"],
   },
+
+  title:{
+    type: String,
+    require: true,
+  },
   main_image:
     {
         public_id:{
@@ -82,6 +87,7 @@ const restaurantSchema = new mongoose.Schema({
   ],
   special_daymenu: [
     {
+      category:String,
       itemName: String,
       description: String,
       price: Number,
@@ -99,7 +105,7 @@ const restaurantSchema = new mongoose.Schema({
       
     },
   ],
-  offers: [
+  offers: 
     {
       name: String,
       description: String,
@@ -117,7 +123,7 @@ const restaurantSchema = new mongoose.Schema({
         }
       
     },
-  ],
+  
   openingHours: {
     Monday: {
       open: String,
@@ -149,7 +155,7 @@ const restaurantSchema = new mongoose.Schema({
     },
   },
 
-  gallery:[{
+  gallery:{
     images:[
         {
             public_id:{
@@ -163,7 +169,7 @@ const restaurantSchema = new mongoose.Schema({
         }
       ]
   }
-  ],
+  ,
   contact: {
     phone: String,
     email: String,
@@ -188,6 +194,11 @@ const restaurantSchema = new mongoose.Schema({
   city:{
     type:String,
     required: true,
+  },
+
+  followers:{
+    type:Number,
+    default:0,
   }
 });
 

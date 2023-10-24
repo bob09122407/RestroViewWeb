@@ -1,5 +1,3 @@
-/* src/components/Video.css */
-
 .video-feed {
     display: flex;
     justify-content: center;
@@ -8,6 +6,10 @@
     overflow: hidden;
    
   }
+  .liked-heart {
+    color: red;
+  }
+  
   
   .video-feed-inner {
     display: flex;
@@ -39,8 +41,19 @@
 
 .home-icon{
   position: relative; 
-  left: 20em;
-  bottom: 20em;
+  left: 49vh;
+  bottom: 38vh;
   z-index: 2;
 }
-  
+.comment-icon{
+  position: relative; 
+  left: 43vh;
+  bottom: 28vh;
+  z-index: 2;
+}
+.save-icon{
+  position: relative; 
+  left: 38vh;
+  bottom: 18vh;
+  z-index: 2;
+}

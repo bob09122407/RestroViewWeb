@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/reels" element={<Reels />} />
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/restrodetails" element={<Detailsrestro />} />
+            <Route path="/detailrestaurants/:id" element={<Detailsrestro />} />
             <Route path="/filters" element={<Filter />} />
           </Routes>
           <FooterConditionally />

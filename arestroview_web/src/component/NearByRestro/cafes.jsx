@@ -1,175 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../../cardUI/card.jsx';
+import { useSelector, useDispatch } from 'react-redux'; 
 import './cafe.css';
-import user from "../../assests/Gotham-Font/Gotham-Font/images/user.png"
-import waving from "../../assests/Gotham-Font/Gotham-Font/images/waving-hand.png"
+import waving from "../../assests/Gotham-Font/Gotham-Font/images/waving-hand.png";
 import ReactPaginate from 'react-paginate';
+import { useCity } from '../../CityContext';
+import { filterItemscafe } from '../../actions/cafeAction.js';
+import { filterLocations } from '../../actions/nearmeAction.js';
 
 const itemsPerPage = 6; // Number of items per page
 
-const cafes = [
-  {
-    name: 'Cafe1',
-    title: 'Cuisine Type 1',
-    frontImage: user,
-    rating: 4.5,
-    image: waving,
-    description: 'Description of Cafe1',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe1',
-    title: 'Cuisine Type 1',
-    frontImage: user,
-    rating: 4.5,
-    image: waving,
-    description: 'Description of Cafe1',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-  {
-    name: 'Cafe2',
-    title: 'Cuisine Type 2',
-    frontImage: user,
-    rating: 4.0,
-    image: waving,
-    description: 'Description of Cafe2',
-  },
-];
-
-const Cafes = () => {
+const Cafe = () => {
+  const { selectedCity } = useCity();
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
+  const [hasLocationPermission, setHasLocationPermission] = useState(false);
+  const [isNearMeEnabledc, setIsNearMeEnabledc] = useState(false);
 
-  // Calculate the index range for the current page
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  // Use the useSelector hook to get the restaurant data
+  const cafes = useSelector((state) => state.filterItemsReducercafe.filteredItemsc);
+  const nearmecafes = useSelector((state) => state.locationsReducer.locations);
 
-  // Slice the restaurants array based on the current page
-  const displayedRestaurants = cafes.slice(startIndex, endIndex);
+  // Determine the data to display based on the "Near Me" toggle
+  const displayedData = isNearMeEnabledc ? nearmecafes : cafes;
 
-  // Total number of pages
-  const pageCount = Math.ceil(cafes.length / itemsPerPage);
+  // Ensure that displayedData is an array before using map
+  const displayedItems = Array.isArray(displayedData) ? displayedData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) : [];
+
+  // Calculate the total number of pages based on the displayed data
+  const pageCount = Math.ceil(Array.isArray(displayedData) ? displayedData.length / itemsPerPage : 0);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
+
+  // Function to request location access
+  const requestLocationAccess = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // Get the user's latitude and longitude from the position object
+        const userLatitude = position.coords.latitude;
+        const userLongitude = position.coords.longitude;
+        
+        // Set the location permission state to true
+        setHasLocationPermission(true);
+        
+        // Dispatch an action to fetch nearby restaurants
+        dispatch(filterLocations(  userLatitude,userLongitude,'cafe'));
+        setIsNearMeEnabledc(true);
+      }, (error) => {
+        // Handle location access denial or errors here
+        console.error('Error getting location:', error);
+      });
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
+  // Function to handle toggling "Near Me"
+  const toggleNearMec = () => {
+    if (isNearMeEnabledc) {
+      setIsNearMeEnabledc(false);
+    } else {
+      requestLocationAccess();
+    }
+  };
+
+  useEffect(() => {
+    // When the component mounts, fetch restaurant data by dispatching the action
+    dispatch(filterItemscafe(selectedCity));
+  }, [dispatch, selectedCity]);
 
   return (
     <div className="restaurant-container">
@@ -181,16 +81,29 @@ const Cafes = () => {
           </div>
           <div className="header-section">
             <div className="toggle-container">
-              <label className="switch-label" htmlFor="toggle">Near Me</label>
-              <input type="checkbox" name="checkbox1" id="toggle1" />
+              <label className="switch-label" htmlFor="toggle1">Near Me</label>
+              <input
+                type="checkbox"
+                name="checkbox"
+                id="toggle1"
+                onClick={toggleNearMec}
+                checked1={isNearMeEnabledc}
+              />
               <label htmlFor="toggle1" className="switch1"></label>
             </div>
           </div>
         </div>
       </div>
       <div className="restaurant-list">
-        {displayedRestaurants.map((restaurant, index) => (
-          <Card key={index} {...restaurant} />
+        {displayedItems.map((cafe, index) => (
+          <Card key={index} 
+            name={cafe.name}
+            title={cafe.title}
+            frontImage={cafe.main_image.url}
+            rating={cafe.ratings.average}
+            image={waving}
+            description={cafe.description}
+          />
         ))}
       </div>
       <ReactPaginate
@@ -203,10 +116,6 @@ const Cafes = () => {
       />
     </div>
   );
-
 }
 
-export default Cafes;
-
-
-
+export default Cafe;

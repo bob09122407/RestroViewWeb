@@ -1,13 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const {
-  filterItems,
+  filterItemsCafe,
   filterLocations,
+  filtermenu,
+  filterItemsRes,
+  filterItemsVen,
+  followRestaurantOrCafe,
+  search
 } = require('../utils/filter'); // Replace with the actual path to your controller
 
 // Route to filter items (restaurants, cafes, vendors) based on common filters
-router.get('/filter', filterItems);
+router.get('/filter/res', filterItemsRes);
+router.get('/filter/cafe', filterItemsCafe);
 router.get('/filter/location',filterLocations);
-
+router.get('/filter/vendor', filterItemsVen);
+router.get('/menu/category', filtermenu);
+router.post('/user/:userId/follow/:restaurantOrCafeOrVendorId',followRestaurantOrCafe );
+router.get('/search',search );
 
 module.exports = router;

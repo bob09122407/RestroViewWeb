@@ -9,175 +9,41 @@
 
 /* main */
 .mainin {
-    display: flex;
-    flex-wrap: wrap;
-    /* height: 100vh; */
-    /* overflow: hidden; */
-    color: #fff;
-  }
-  h2{
-    color: #fff;
-  }
- 
-.sidebar{
-    z-index: 200;
-    flex: 0 0 330px; /* Fixed width for the sidebar */
-    background: transparent;
-    /* border-radius: 30px; */
-    padding: 20px 0px 40px;
-    /* box-shadow: 0 12px 35px rgb(255, 255, 255); */
-    position: fixed;
-    top: 94px;;
-    left: 0;
-    height: 100%;
-    overflow: hidden;
-    overflow-y: auto; /* Allow sidebar to scroll if content exceeds the screen height */
-    color: #fff;
-   
+  display: flex;
+  justify-content: center; /* Center-align the content */
+  align-items: flex-start; /* Align content at the top of the screen */
+  flex-wrap: wrap;
+  color: #fff;
 }
+  /* h2{
+    color: #fff;
+  }
+  */
+  
+
+
 .right {
   padding-top: 3rem;
-    /* flex-grow: 1; Allow the right section to grow and take up the remaining space */
-    padding-left: 350px; /* Adjust this value to match the width of your sidebar */
-    overflow-y: auto;
+  /* overflow-y: auto; */
     /* margin-bottom: 4rem; */
   }
-  .restaurant-list{
+  .restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: 5rem;
+    align-items: flex-start; /* Align content at the top of the screen */
   }
 
   .cardss{
     padding-bottom: 5rem;
   }
   
-  .sidebar .top {
-    display: flex;
-    align-items: center;
-    z-index: 2;
-    /* justify-content: space-between; */
-  }
-  
-  .sidebar .top img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    z-index: 2;
-  }
-  
-  .sidebar .top h2 {
-    font-size: 20px;
-    margin: 0;
-    z-index: 2;
-  }
-  
-  .sidebar .heading {
-    margin-top: 20px;
-    z-index: 2;
-    
-  }
-  
-  .sidebar .heading ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-left: 0.5rem;
-    z-index: 2;
-  }
-  
-  .sidebar .heading ul li {
-    display: inline-block;
-    margin-right: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 2;
-  }
-  
-  .sidebar .price {
-    margin-top: 20px;
-    z-index: 2;
-  }
-
-  
-  .sidebar .food-filter {
-    margin-top: 20px;
-    margin-left: 3rem;
-    z-index: 2;
-  }
-  
-  .sidebar .food-filter h3 {
-    font-size: 18px;
-    margin: 0;
-    z-index: 2;
-  }
-  
-  .sidebar .food-filter ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    z-index: 2;
-  }
-  
-  .sidebar .food-filter ul li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    z-index: 2;
-  }
-  
-  .sidebar .food-filter ul li input {
-    margin-right: 10px;
-    z-index: 2;
-  }
-  
-  .sidebar .veg-nonveg {
-    margin-top: 20px;
-    margin-left: 3rem;
-    z-index: 2;
-  }
-  
-  .sidebar .veg-nonveg h3 {
-    font-size: 18px;
-    margin: 0;
-    z-index: 2;
-  }
-  
-  .sidebar .veg-nonveg ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    z-index: 2;
-  }
-  
-  .sidebar .veg-nonveg ul li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    z-index: 2;
-  }
-  
-  .sidebar .veg-nonveg ul li input {
-    margin-right: 10px;
-    z-index: 2;
-  }
   
   /* Small screens */
   
   @media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      display: none;
-    }
-  
-    .sidebar-open {
-      display: block;
-    }
+   
     
   .right {
     padding-left: 0; /* Remove padding on small screens */
@@ -223,127 +89,72 @@
   }
 
 
+  .button-panel {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-panel button,
+  .button-panel .dropdown select {
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    background-color: #ff8d41; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 20px; /* Rounded corners */
+    margin-right: 10px; 
+    z-index: 2;/* Adjust spacing as needed */
+  }
+  
+  .button-panel button:hover,
+  .button-panel .dropdown select:hover {
+    background-color: #7fb9fb; /* Button background color on hover */
+  }
+  
+  .button-panel button:focus,
+  .button-panel .dropdown select:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  .button-panel .dropdown select {
+    appearance: none; /* Remove default dropdown appearance */
+  }
+  
+  /* Media query for responsiveness (for smaller screens) */
+  @media (max-width: 768px) {
+    .button-panel {
+      flex-direction: row; /* Keep items horizontally on smaller screens */
+      overflow-x: auto; /* Enable horizontal scrolling */
+      white-space: nowrap; /* Prevent wrapping to the next line */
+      justify-content: flex-start;
+      padding: 1rem;
+    }
+    .right{
+      overflow: hidden;
+    }
+  
+    .button-panel button,
+    .button-panel .dropdown select {
+      margin-bottom: 10px; /* Add space between buttons */
+    }
+  }
+  /* This code will create a responsive horizontal button panel with buttons and dropdown menus that are horizontally scrollable on larger screens and stack vertically on smaller screens. You can adjust the styling to match your design preferences. */
+  
+  
+  
+  
+  
+  
 
 
 
 
 
 
-
-
-
-/* //price filter */
-.wrapper{
-  width: 300px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px 25px 40px;
-  z-index: 2;
-  /* box-shadow: 0 12px 35px rgba(0,0,0,0.1); */
-}
-header h2{
-  font-size: 24px;
-  font-weight: 600;
-  z-index: 2;
-}
-header p{
-  margin-top: 5px;
-  font-size: 16px;
-  z-index: 2;
-}
-.price{
-    z-index: 300000;
-}
-.price-input{
-  width: 100%;
-  display: flex;
-  margin: 30px 0 35px;
-  z-index: 2;
-}
-.price-input .field{
-  display: flex;
-  width: 100%;
-  height: 45px;
-  align-items: center;
-  z-index: 2;
-}
-.field input{
-  width: 100%;
-  height: 100%;
-  outline: none;
-  font-size: 19px;
-  margin-left: 12px;
-  border-radius: 5px;
-  text-align: center;
-  border: 1px solid #999;
-  -moz-appearance: textfield;
-  z-index: 2;
-}
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  z-index: 2;
-}
-.price-input .separator{
-  width: 130px;
-  display: flex;
-  font-size: 19px;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-.slider{
-  height: 5px;
-  position: relative;
-  background: #ddd;
-  border-radius: 5px;
-  z-index: 2;
-}
-.slider .progress{
-  height: 100%;
-  left: 25%;
-  right: 25%;
-  position: absolute;
-  border-radius: 5px;
-  background: #17A2B8;
-  z-index: 2;
-}
-.range-input{
-  position: relative;
-  z-index: 2;
-}
-.range-input input{
-  position: absolute;
-  width: 100%;
-  height: 5px;
-  top: -5px;
-  background: none;
-  pointer-events: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  z-index: 2;
-}
-input[type="range"]::-webkit-slider-thumb{
-  height: 17px;
-  width: 17px;
-  border-radius: 50%;
-  background: #17A2B8;
-  pointer-events: auto;
-  -webkit-appearance: none;
-  z-index: 2;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
-}
-input[type="range"]::-moz-range-thumb{
-  height: 17px;
-  width: 17px;
-  border: none;
-  border-radius: 50%;
-  background: #17A2B8;
-  pointer-events: auto;
-  z-index: 2;
-  -moz-appearance: none;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
-}
   /* inrestro.css */
 
 /* Add styles for checkboxes and labels */

@@ -5,7 +5,7 @@ import  MenuItem  from './items.jsx';
 import { data, images } from '../../constants';
 import './menuitem.css';
 
-const SpecialMenu = () => (
+const SpecialMenu = ({special_daymenu}) => (
   <div className="app__specialMenu flex__center section__padding" id="menu">
     <div className="app__specialMenu-title">
       <SubHeading title="Hello" />
@@ -16,9 +16,17 @@ const SpecialMenu = () => (
       <div className="app__specialMenu-menu_wine  flex__center">
         <p className="app__specialMenu-menu_heading">Wine & Beer</p>
         <div className="app__specialMenu_menu_items">
-          {data.wines.map((wine, index) => (
-            <MenuItem key={wine.title + index} title={wine.title} price={wine.price} tags={wine.tags} imageSrc={wine.image}/>
-          ))}
+        {special_daymenu
+            .filter((item) => item.category === 'First')
+            .map((wine, index) => (
+              <MenuItem
+                key={wine.itemName + index}
+                title={wine.itemName}
+                price={wine.price}
+                tags={wine.description}
+                imageSrc={wine.img.url}
+              />
+            ))}
         </div>
       </div>
 
@@ -29,9 +37,17 @@ const SpecialMenu = () => (
       <div className="app__specialMenu-menu_cocktails  flex__center">
         <p className="app__specialMenu-menu_heading">Cocktails</p>
         <div className="app__specialMenu_menu_items">
-          {data.cocktails.map((cocktail, index) => (
-            <MenuItem key={cocktail.title + index} title={cocktail.title} price={cocktail.price} tags={cocktail.tags} imageSrc={cocktail.image}/>
-          ))}
+        {special_daymenu
+            .filter((item) => item.category === 'Second')
+            .map((cocktail, index) => (
+              <MenuItem
+                key={cocktail.itemName + index}
+                title={cocktail.itemName}
+                price={cocktail.price}
+                tags={cocktail.description}
+                imageSrc={cocktail.img.url}
+              />
+            ))}
         </div>
       </div>
     </div>

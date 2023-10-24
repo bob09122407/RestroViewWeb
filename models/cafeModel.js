@@ -37,8 +37,14 @@ const cafeSchema = new mongoose.Schema({
     city: String,
     state: String,
     zipCode: String,
-    longitude:String,
-    lattitude:String,
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
   },
   ratings: {
     average: {
@@ -177,7 +183,18 @@ const cafeSchema = new mongoose.Schema({
   city:{
     type:String,
     required: true,
-  }
+  },
+
+
+  followers:{
+    type:Number,
+    default:0,
+  },
+
+  title:{
+    type: String,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model('Cafe', cafeSchema);

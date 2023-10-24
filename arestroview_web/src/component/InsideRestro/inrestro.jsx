@@ -1,313 +1,135 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./inrestro.css";
-import Price from "./price.jsx"
 import Card from '../../cardUI/incard.jsx';
-// import '../NearByRestro/restaurant.css';
-import user from "../../assests/Gotham-Font/Gotham-Font/images/user.png"
-import waving from "../../assests/Gotham-Font/Gotham-Font/images/waving-hand.png"
 import ReactPaginate from 'react-paginate';
-import Bobby from "../../assests/Gotham-Font/Gotham-Font/images/bobby.jpeg"
+import { useSelector, useDispatch } from 'react-redux'; 
+import { filterItemsres } from '../../actions/restaurantAction.js';
+import { filterItemsvendor } from '../../actions/vendorAction.js';
+import { filterItemscafe } from '../../actions/cafeAction.js';
+import { useCity } from '../../CityContext';
+
 const itemsPerPage = 15; // Number of items per page
 
-const restaurants = [
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 2',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 3',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  {
-    name: 'Restaurant 1',
-    jobTitle: 'Cuisine Type 1',
-    followers: 100,
-    open: 100,
-    post: 100,
-    imageSrc: Bobby,
-  },
-  
- 
-];
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const { selectedCity } = useCity();
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("restaurant"); // Default category
+  const [selectedFood, setSelectedFood] = useState("All"); // Default food
+  const [selectedRating, setSelectedRating] = useState(""); // Default rating filter
+
+  // Define a useEffect to fetch and display items based on the selected category
+  useEffect(() => {
+    if (selectedCategory === "restaurant") {
+      dispatch(filterItemsres(selectedCity));
+    } else if (selectedCategory === "cafe") {
+      dispatch(filterItemscafe(selectedCity));
+    } else if (selectedCategory === "vendor") {
+      dispatch(filterItemsvendor(selectedCity, selectedFood));
+    }
+  }, [selectedCategory, selectedCity, selectedFood, dispatch]);
 
   // Calculate the index range for the current page
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Slice the restaurants array based on the current page
-  const displayedRestaurants = restaurants.slice(startIndex, endIndex);
+  // Selector function to get the filtered items
+  const displayedItems = useSelector(state => {
+    let items = [];
+
+    if (selectedCategory === "restaurant") {
+      items = state.filterItemsReducerres.filteredItems;
+    } else if (selectedCategory === "cafe") {
+      items = state.filterItemsReducercafe.filteredItemsc;
+    } else if (selectedCategory === "vendor") {
+      if (selectedFood === "All") {
+        items = state.filterItemsReducervendor.filteredItemsv;
+      } else {
+        items = state.filterItemsReducervendor.filteredItemsv.filter(item => item.cuisine === selectedFood);
+      }
+    }
+
+    // Apply the rating filter
+    if (selectedRating) {
+      items = items.filter(item => item.ratings.average >= parseInt(selectedRating));
+    }
+
+    return items;
+  });
 
   // Total number of pages
-  const pageCount = Math.ceil(restaurants.length / itemsPerPage);
+  const pageCount = Math.ceil(displayedItems.length / itemsPerPage);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
-  const foodFilters = [
-    "Pizza",
-    "Burger",
-    "Noodles",
-    "Rice",
-  ];
 
-  const vegNonvegFilters = [
-    "Veg",
-    "Non-veg",
-  ];
-  const TimeFilters = [
-    "Open",
-    "Close",
-  ];
-
-  const handleToggleFilter = () => {
-    setIsOpen(!isOpen);
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setSelectedFood("All");
   };
 
-  const handleClickFilter = (filter) => {
-    setSelectedFilter(filter);
+  const handleFoodChange = (food) => {
+    setSelectedFood(food);
+  };
+
+  const handleRatingChange = (rating) => {
+    setSelectedRating(rating);
   };
 
   return (
     <div className="mainin">
-    <div className="sidebar">
-      <div className="top">
-        <img src="" alt="" />
-        <h2>Filters</h2>
-      </div>
-      <div className="heading">
-        <ul>
-          <li>Restaurants</li>
-          <li>Vendors</li>
-          <li>Cafes</li>
-        </ul>
-      </div>
-      <div className="price">
-        <Price />
-      </div>
-      <div className="food-filter">
-        <h3>Food</h3>
-        <ul>
-          {foodFilters.map((filter) => (
-            <li key={filter}>
-              <a
-                href="#"
-                class="under"
-                className={selectedFilter === filter ? "active" : ""}
-                onClick={() => handleClickFilter(filter)}
-              >
-                {filter}
-              </a>
-            </li>
+      <div className="right">
+        <div className="button-panel">
+          <button onClick={() => handleCategoryChange("restaurant")}>Restaurant</button>
+          <button onClick={() => handleCategoryChange("cafe")}>Cafe</button>
+          <button onClick={() => handleCategoryChange("vendor")}>Vendors</button>
+          <div className="dropdown">
+            <select
+              disabled={selectedCategory !== "vendor"}
+              onChange={(e) => handleFoodChange(e.target.value)}
+              value={selectedFood}
+            >
+              <option value="All">All</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Burger">Burger</option>
+              <option value="Dabeli">Dabeli</option>
+            </select>
+          </div>
+          <div className="dropdown">
+            <select
+              onChange={(e) => handleRatingChange(e.target.value)}
+              value={selectedRating}
+            >
+              <option value="">All Ratings</option>
+              <option value="4">4+ Stars</option>
+              <option value="3">3+ Stars</option>
+              <option value="2">2+ Stars</option>
+              <option value="1">1+ Stars</option>
+            </select>
+          </div>
+        </div>
+        <div className="restaurant-list">
+          {displayedItems.slice(startIndex, endIndex).map((item, index) => (
+            <Card key={index} 
+              name={item.name}
+              title={item.title}
+              followers={item.followers}
+              open="100"
+              imageSrc={item.main_image.url} 
+              Id={item._id}
+            />
           ))}
-        </ul>
+        </div>
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
       </div>
-      <div className="veg-nonveg">
-        <h3>Veg/Non-veg</h3>
-        <ul>
-          {vegNonvegFilters.map((filter) => (
-            <li key={filter}>
-              <a
-              class="under"
-                href="#"
-                className={selectedFilter === filter ? "active" : ""}
-                onClick={() => handleClickFilter(filter)}
-              >
-                {filter}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="veg-nonveg">
-        <h3>Veg/Non-veg</h3>
-        <ul>
-          {TimeFilters.map((filter) => (
-            <li key={filter}>
-              <a class="under" href="#"
-                className={selectedFilter === filter ? "active" : ""}
-                onClick={() => handleClickFilter(filter)}
-              >
-                {filter}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="veg-nonveg">
-      <h1>restroview</h1>
-      </div>
-    </div>
-    <div className="right">
-    <div className="restaurant-list">
-        {displayedRestaurants.map((restaurant, index) => (
-          <Card key={index} {...restaurant} />
-        ))}
-      </div>
-      <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
-    </div>
     </div>
   );
 };
