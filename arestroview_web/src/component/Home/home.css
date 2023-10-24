@@ -1,4 +1,8 @@
 /* home.css */
+.team-main{
+  overflow: hidden;
+}
+
 
 .container10 {
   display: flex;

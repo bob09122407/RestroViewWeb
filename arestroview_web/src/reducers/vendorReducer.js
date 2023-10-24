@@ -17,6 +17,12 @@ import {
     FILTER_VENDOR_ITEMS_REQUEST,
     FILTER_VENDOR_ITEMS_SUCCESS,
     FILTER_VENDOR_ITEMS_FAILURE,
+    CREATE_ADVERTISEMENT_REQUEST,
+    CREATE_ADVERTISEMENT_SUCCESS,
+    CREATE_ADVERTISEMENT_FAILURE,
+    GET_ADVERTISEMENTS_REQUEST,
+    GET_ADVERTISEMENTS_SUCCESS,
+    GET_ADVERTISEMENTS_FAILURE,
   } from '../constantss/vendorConstant';
   
 
@@ -26,6 +32,11 @@ import {
     filteredItemsv: [],
     loading: false,
     error: null,
+    creatingAdvertisement: false,
+    creatingAdvertisementError: null,
+    advertisements: [],
+    fetchingAdvertisements: false,
+    fetchingAdvertisementsError: null,
   };
 
 
@@ -117,6 +128,53 @@ import {
           ...state,
           loading: false,
           error: action.error,
+        };
+      default:
+        return state;
+    }
+  };
+  
+
+
+  // reducer.js
+
+  export const advertisementReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case CREATE_ADVERTISEMENT_REQUEST:
+        return {
+          ...state,
+          creatingAdvertisement: true,
+          creatingAdvertisementError: null,
+        };
+      case CREATE_ADVERTISEMENT_SUCCESS:
+        return {
+          ...state,
+          creatingAdvertisement: false,
+          advertisements: [...state.advertisements, action.payload],
+        };
+      case CREATE_ADVERTISEMENT_FAILURE:
+        return {
+          ...state,
+          creatingAdvertisement: false,
+          creatingAdvertisementError: action.payload,
+        };
+      case GET_ADVERTISEMENTS_REQUEST:
+        return {
+          ...state,
+          fetchingAdvertisements: true,
+          fetchingAdvertisementsError: null,
+        };
+      case GET_ADVERTISEMENTS_SUCCESS:
+        return {
+          ...state,
+          fetchingAdvertisements: false,
+          advertisements: action.payload.data.data, // Updated property name
+        };
+      case GET_ADVERTISEMENTS_FAILURE:
+        return {
+          ...state,
+          fetchingAdvertisements: false,
+          fetchingAdvertisementsError: action.payload,
         };
       default:
         return state;

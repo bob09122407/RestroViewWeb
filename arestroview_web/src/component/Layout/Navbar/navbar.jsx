@@ -88,7 +88,7 @@ const handleSearch = async () => {
                 <div className="nav__menu" id="nav-menu">
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <Link to="/" className={`nav__link ${location.pathname === '/' ? 'active-link' : ''}`}>
+                            <Link to="/home" className={`nav__link ${location.pathname === '/home' ? 'active-link' : ''}`}>
                                 <BiHomeAlt className='nav__icon' />
                                 <span className="nav__name">Home</span>
                             </Link>
@@ -106,10 +106,10 @@ const handleSearch = async () => {
                                 <BiCaretDown className="nav__icon-plus" />
                             </div>
                             <ul className="nav__dropdown-menu nav__dropdown-menu-above">
-                                <li><a href="#">Vadodara</a></li>
-                                <li><a href="#">Mumbai</a></li>
-                                <li><a href="#">Surat</a></li>
-                                <li><a href="#">Akola</a></li>
+                            <li><a className="city_name" href="#" onClick={() => handleCitySelect('Vadodara')}>Vadodara</a></li>
+                                <li><a className="city_name" href="#" onClick={() => handleCitySelect('Mumbai')}>Mumbai</a></li>
+                                <li><a className="city_name" href="#" onClick={() => handleCitySelect('Surat')}>Surat</a></li>
+                                <li><a className="city_name" href="#" onClick={() => handleCitySelect('Akola')}>Akola</a></li>
                             </ul>
                         </li>
 
@@ -123,7 +123,7 @@ const handleSearch = async () => {
                         <li className="nav__item">
                             <Link to="/portfolio" className={`nav__link ${location.pathname === '/portfolio' ? 'active-link' : ''}`}>
                                 <BiBriefcaseAlt className='nav__icon' />
-                                <span className="nav__name">Favourite</span>
+                                <span className="nav__name">Profile</span>
                             </Link>
                         </li>
                     </ul>

@@ -11,7 +11,10 @@ import {
   FOLLOW_FAIL,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
-  SEARCH_REQUEST
+  SEARCH_REQUEST,
+  FETCH_FOLLOWING_FAIL,
+  FETCH_FOLLOWING_REQUEST,
+  FETCH_FOLLOWING_SUCCESS
 } from '../constantss/nearmeConstant';
 
 // Action to filter locations
@@ -60,24 +63,24 @@ export const openGoogleMaps = (latitude, longitude) => async (dispatch) => {
   }
 };
 
-
-export const followRestaurantOrCafe = (userId, restaurantOrCafeOrVendorId) => async (dispatch) => {
+export const followRestaurantOrCafe = (userId, restaurantOrCafeOrVendorId, category) => async (dispatch) => {
   try {
     dispatch({ type: FOLLOW_REQUEST });
 
-    const response = await axios.post(`/api/v1/user/${userId}/follow/${restaurantOrCafeOrVendorId}`);
+    const response = await axios.post(`/api/v1/user/${userId}/follow/${restaurantOrCafeOrVendorId}/${category}`);
     console.log('Response:', response);
 
-    if (response.data) {
+    if (response.data && response.data.success) {
       dispatch({ type: FOLLOW_SUCCESS, payload: response.data.message });
     } else {
-      dispatch({ type: FOLLOW_FAIL, payload: 'Response data is missing' });
+      dispatch({ type: FOLLOW_FAIL, payload: response.data ? response.data.message : 'Response data is missing' });
     }
   } catch (error) {
     console.error('Error:', error);
     dispatch({ type: FOLLOW_FAIL, payload: error.response ? error.response.data : 'Unknown error' });
   }
 };
+
 
 
 //search api
@@ -101,3 +104,19 @@ export const search = (name) => async (dispatch) => {
 };
 
 
+//FOLLOWING LIST
+export const fetchFollowing = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: FETCH_FOLLOWING_REQUEST });
+
+    const response = await axios.get(`/api/v1/following/${userId}`);
+
+    if (response.data.success) {
+      dispatch({ type: FETCH_FOLLOWING_SUCCESS, payload: response.data.data });
+    } else {
+      dispatch({ type: FETCH_FOLLOWING_FAIL, payload: 'Failed to fetch following list' });
+    }
+  } catch (error) {
+    dispatch({ type: FETCH_FOLLOWING_FAIL, payload: error.response ? error.response.data : 'Unknown error' });
+  }
+};

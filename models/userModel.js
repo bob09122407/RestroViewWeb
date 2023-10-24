@@ -26,8 +26,14 @@ const userSchema= new mongoose.Schema({
     },
     followingRestaurantsCafe: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'RestaurantOrCafe', // Reference to your restaurant or cafe model
+        restaurantOrCafeId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'RestaurantOrCafe', // Reference to your restaurant or cafe model
+        },
+        category: {
+          type: String,
+           // Define the possible categories here
+        },
       },
     ],
   

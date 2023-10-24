@@ -17,7 +17,13 @@ import {
   DELETE_VENDOR_FAILURE,
   FILTER_VENDOR_ITEMS_FAILURE,
   FILTER_VENDOR_ITEMS_REQUEST,
-  FILTER_VENDOR_ITEMS_SUCCESS
+  FILTER_VENDOR_ITEMS_SUCCESS,
+  CREATE_ADVERTISEMENT_REQUEST,
+  CREATE_ADVERTISEMENT_SUCCESS,
+  CREATE_ADVERTISEMENT_FAILURE,
+  GET_ADVERTISEMENTS_REQUEST,
+  GET_ADVERTISEMENTS_SUCCESS,
+  GET_ADVERTISEMENTS_FAILURE,
 } from '../constantss/vendorConstant';
 
 
@@ -109,5 +115,31 @@ export const filterItemsvendor = (city) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: FILTER_VENDOR_ITEMS_FAILURE, error: error.message });
+  }
+};
+
+
+
+
+
+export const getAdvertisementsByCity = (city) => async (dispatch) => {
+  dispatch({ type: GET_ADVERTISEMENTS_REQUEST });
+
+  try {
+    console.log('Fetching advertisements for city:', city);
+    // Make an API request to fetch advertisements based on the city
+    const response = await axios.get(`/api/v1/citybasedadvertisement/${city}`);
+    console.log(response);
+    dispatch({
+      type: GET_ADVERTISEMENTS_SUCCESS,
+      payload: response,
+      
+    });
+    console.log(response.data);
+  } catch (error) {
+    dispatch({
+      type: GET_ADVERTISEMENTS_FAILURE,
+      error: error.message,
+    });
   }
 };

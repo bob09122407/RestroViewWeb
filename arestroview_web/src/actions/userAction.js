@@ -90,24 +90,29 @@ export const login = (email, password) => async (dispatch) => {
   //   }
   // };
   
+  export const getUserDetails = (userId) => async (dispatch) => {
+    try {
+      dispatch({ type: USER_DETAILS_REQUEST });
+  
+      const { data } = await axios.get(`/api/v1/me/${userId}`); // Update the route to match your API
+  
+      dispatch({
+        type: USER_DETAILS_SUCCESS,
+        payload: data.user, // Assuming the user data is in a 'user' field in the response
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_DETAILS_FAIL,
+        payload: error.response ? error.response.data.message : 'Unknown error',
+      });
+    }
+  };
 
-export const getUserDetails = () => async (dispatch) => {
-  try {
-    dispatch({ type: USER_DETAILS_REQUEST });
-
-    const { data } = await axios.get('/api/v1/me');
-
-    dispatch({
-      type: USER_DETAILS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: USER_DETAILS_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
+  
+  
+  
+  
+  
 
 export const updatePassword = (oldPassword, newPassword, confirmPassword) => async (dispatch) => {
   try {

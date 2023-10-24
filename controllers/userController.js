@@ -45,27 +45,29 @@ exports.loginUser = catchAsyncError(async(req, res, next)=>{
 
 //getuserdetails
 
-exports.getUserDetails=catchAsyncError(async(req, res, next)=>{
-
-    if(!isAuthenticatedUser()){
-        return res.status(401).json({success:false, message:"Unauthorized"});
+exports.getUserDetails = catchAsyncError(async (req, res, next) => {
+    try {
+      const userId = req.params.userId; // Assuming the user ID is provided in the route parameters
+  
+      // Check if the user ID is valid (you may want to validate it)
+  
+      // Fetch user details using the user ID
+      const user = await User.findById(userId); // Replace 'User' with your User model
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      // If the user is found, return the user details
+      res.status(200).json({
+        success: true,
+        user,
+      });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
     }
-
-    try{
-        if(!req.user){
-            return res.status(404).json({success:false, message:"User not found"});
-        }
-        const user= req.user;
-
-         res.status(200).json({
-            success:true,
-            user,
-         })
-    }
-    catch{
-        return res.status(500).json({success:false, message:"Intervnal server error"});
-    }
-});
+  });
+  
 
 
 //update password

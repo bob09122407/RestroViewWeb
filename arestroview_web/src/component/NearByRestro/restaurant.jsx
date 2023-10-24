@@ -7,12 +7,14 @@ import ReactPaginate from 'react-paginate';
 import { useCity } from '../../CityContext';
 import { filterItemsres } from '../../actions/restaurantAction.js';
 import { filterLocations } from '../../actions/nearmeAction.js';
+import { useNavigate } from 'react-router-dom';
 
 const itemsPerPage = 6; // Number of items per page
 
 const Restaurant = () => {
   const { selectedCity } = useCity();
   const dispatch = useDispatch();
+  const navigate= useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const [hasLocationPermission, setHasLocationPermission] = useState(false);
   const [isNearMeEnabled, setIsNearMeEnabled] = useState(false);
@@ -71,13 +73,17 @@ const Restaurant = () => {
     dispatch(filterItemsres(selectedCity));
   }, [dispatch, selectedCity]);
 
+  const handleSeeAllClick=()=>{
+     navigate('/filters/restaurant/All');
+  }
+
   return (
     <div className="restaurant-container">
       <div className="restaurant-header">
         <h2 className='h2'>Restaurants</h2>
         <div className="header-row">
           <div className="header-section">
-            <h3>See All</h3>
+            <h3 onClick={handleSeeAllClick}>See All</h3>
           </div>
           <div className="header-section">
             <div className="toggle-container">
@@ -105,7 +111,7 @@ const Restaurant = () => {
             image={waving}
             description={restaurant.description}
             restaurantId={restaurant._id}
-            // type="restaurant"
+            category="restaurant"
           />
         ))}
       </div>

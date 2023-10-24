@@ -14,7 +14,10 @@ import {
   FOLLOW_FAIL,
   SEARCH_FAILURE,
   SEARCH_REQUEST,
-  SEARCH_SUCCESS
+  SEARCH_SUCCESS,
+  FETCH_FOLLOWING_FAIL,
+  FETCH_FOLLOWING_REQUEST,
+  FETCH_FOLLOWING_SUCCESS
 } from '../constantss/nearmeConstant';
 
   const initialState = {
@@ -22,6 +25,7 @@ import {
     loading: false,
     error: null,
     results: null,
+    followingList: [],
   };
   
   export const locationsReducer = (state = initialState, action) => {
@@ -105,5 +109,18 @@ export const searchReducer = (state = initialState, action) => {
   }
 };
 
+
+export const followingReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_FOLLOWING_REQUEST:
+      return { ...state, loading: true };
+    case FETCH_FOLLOWING_SUCCESS:
+      return { ...state, loading: false, followingList: action.payload, error: null };
+    case FETCH_FOLLOWING_FAIL:
+      return { ...state, loading: false, followingList: [], error: action.payload };
+    default:
+      return state;
+  }
+};
 
   

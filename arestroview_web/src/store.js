@@ -25,9 +25,11 @@ import {
 import { filterItemsReducercafe } from "./reducers/cafeReducers";
 import { locationsReducer, 
           followReducer,
-          searchReducer
+          searchReducer,
+          followingReducer,
 } from "./reducers/nearmeReducer";
-import { filterItemsReducervendor } from "./reducers/vendorReducer";
+import { filterItemsReducervendor ,
+        advertisementReducer  } from "./reducers/vendorReducer";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
@@ -44,7 +46,9 @@ const reducer = combineReducers({
   restaurantReducer: restaurantReducer,
   followReducer:followReducer,
   reelsReducer:reelsReducer,
-  searchReducer:searchReducer
+  searchReducer:searchReducer,
+  followingReducer:followingReducer,
+  advertisementReducer: advertisementReducer
 
 });
 

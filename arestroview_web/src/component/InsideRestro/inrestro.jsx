@@ -7,25 +7,34 @@ import { filterItemsres } from '../../actions/restaurantAction.js';
 import { filterItemsvendor } from '../../actions/vendorAction.js';
 import { filterItemscafe } from '../../actions/cafeAction.js';
 import { useCity } from '../../CityContext';
-
+import { useParams } from 'react-router-dom';
 const itemsPerPage = 15; // Number of items per page
 
 const Sidebar = () => {
   const { selectedCity } = useCity();
+  const { category, food } = useParams(); 
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("restaurant"); // Default category
-  const [selectedFood, setSelectedFood] = useState("All"); // Default food
+  const [selectedCategory, setSelectedCategory] = useState(category || "restaurant");
+  const [selectedFood, setSelectedFood] = useState(food || "All");
+  
   const [selectedRating, setSelectedRating] = useState(""); // Default rating filter
-
+ // Get parameters from the URL
   // Define a useEffect to fetch and display items based on the selected category
+
+  // Set the initial state based on the URL parameters
+ 
   useEffect(() => {
     if (selectedCategory === "restaurant") {
       dispatch(filterItemsres(selectedCity));
     } else if (selectedCategory === "cafe") {
       dispatch(filterItemscafe(selectedCity));
     } else if (selectedCategory === "vendor") {
-      dispatch(filterItemsvendor(selectedCity, selectedFood));
+      if (selectedFood === "All") {
+        dispatch(filterItemsvendor(selectedCity, selectedFood));
+      } else {
+        dispatch(filterItemsvendor(selectedCity, selectedFood));
+      }
     }
   }, [selectedCategory, selectedCity, selectedFood, dispatch]);
 

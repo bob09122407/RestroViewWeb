@@ -3,10 +3,93 @@ const Cafe = require('../models/cafeModel');
 const Vendor = require('../models/vendorModel');
 const User =require('../models/userModel');
 
-//follower and following list of user
+// //follower and following list of user
+// exports.followRestaurantOrCafe = async (req, res) => {
+//   try {
+//     const { userId, restaurantOrCafeOrVendorId } = req.params;
+
+//     // Find the user by userId
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(404).json({ success: false, message: 'User not found' });
+//     }
+
+//     // Check if the user is already following the restaurant, cafe, or vendor
+//     const isFollowing = user.followingRestaurantsCafe.includes(restaurantOrCafeOrVendorId);
+//     if (isFollowing) {
+//       return res.status(400).json({ success: false, message: 'User is already following this restaurant, cafe, or vendor' });
+//     }
+
+//     let restaurantOrCafeOrVendor;
+
+//     // Check if the restaurantOrCafeOrVendorId corresponds to a Restaurant, Cafe, or Vendor
+//     if (await Restaurant.findById(restaurantOrCafeOrVendorId)) {
+//       restaurantOrCafeOrVendor = await Restaurant.findById(restaurantOrCafeOrVendorId);
+//     } else if (await Cafe.findById(restaurantOrCafeOrVendorId)) {
+//       restaurantOrCafeOrVendor = await Cafe.findById(restaurantOrCafeOrVendorId);
+//     } else if (await Vendor.findById(restaurantOrCafeOrVendorId)) {
+//       restaurantOrCafeOrVendor = await Vendor.findById(restaurantOrCafeOrVendorId);
+//     } else {
+//       return res.status(404).json({ success: false, message: 'Restaurant, cafe, or vendor not found' });
+//     }
+
+//     // Add the restaurant, cafe, or vendor to the user's followingRestaurantsCafeVendors list
+//     user.followingRestaurantsCafe.push(restaurantOrCafeOrVendorId);
+//     await user.save();
+
+//     // Increment the followers count of the restaurant, cafe, or vendor
+//     restaurantOrCafeOrVendor.followers += 1;
+//     await restaurantOrCafeOrVendor.save();
+
+//     return res.status(200).json({ success: true, message: 'User is now following the restaurant, cafe, or vendor' });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+//   }
+// };
+
+// exports.followRestaurantOrCafe = async (req, res) => {
+//   try {
+//     const { userId, restaurantOrCafeOrVendorId,category } = req.params;
+
+//     // Find the user by userId
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(404).json({ success: false, message: 'User not found' });
+//     }
+
+//     // Check if the user is already following the same restaurant, cafe, or vendor
+//     const isFollowing = user.followingRestaurantsCafe.some((item) => item.follow.equals(restaurantOrCafeOrVendorId));
+
+//     if (isFollowing) {
+//       return res.status(400).json({ success: false, message: 'User is already following this restaurant, cafe, or vendor' });
+//     }
+
+//     // Check if the restaurantOrCafeOrVendorId corresponds to a Restaurant, Cafe, or Vendor
+//     const restaurantOrCafeOrVendor = await Restaurant.findById(restaurantOrCafeOrVendorId)
+//       || await Cafe.findById(restaurantOrCafeOrVendorId)
+//       || await Vendor.findById(restaurantOrCafeOrVendorId);
+
+//     if (!restaurantOrCafeOrVendor) {
+//       return res.status(404).json({ success: false, message: 'Restaurant, cafe, or vendor not found' });
+//     }
+
+//     // Add the restaurant, cafe, or vendor to the user's followingRestaurantsCafe list
+//     user.followingRestaurantsCafe.push({ restaurantOrCafeOrVendorId, category });
+//     await user.save();
+
+//     // Increment the followers count of the restaurant, cafe, or vendor
+//     restaurantOrCafeOrVendor.followers += 1;
+//     await restaurantOrCafeOrVendor.save();
+
+//     return res.status(200).json({ success: true, message: 'User is now following the restaurant, cafe, or vendor' });
+//   } catch (error) {
+//     return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+//   }
+// };
+
 exports.followRestaurantOrCafe = async (req, res) => {
   try {
-    const { userId, restaurantOrCafeOrVendorId } = req.params;
+    const { userId, restaurantOrCafeOrVendorId, category } = req.params;
 
     // Find the user by userId
     const user = await User.findById(userId);
@@ -14,30 +97,36 @@ exports.followRestaurantOrCafe = async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Check if the user is already following the restaurant, cafe, or vendor
-    const isFollowing = user.followingRestaurantsCafe.includes(restaurantOrCafeOrVendorId);
+    // Check if the user is already following the same restaurant, cafe, or vendor by ID
+    const isFollowing = user.followingRestaurantsCafe.some((item) =>
+      item.restaurantOrCafeId.equals(restaurantOrCafeOrVendorId)
+    );
+
     if (isFollowing) {
       return res.status(400).json({ success: false, message: 'User is already following this restaurant, cafe, or vendor' });
     }
 
-    let restaurantOrCafeOrVendor;
-
-    // Check if the restaurantOrCafeOrVendorId corresponds to a Restaurant, Cafe, or Vendor
-    if (await Restaurant.findById(restaurantOrCafeOrVendorId)) {
-      restaurantOrCafeOrVendor = await Restaurant.findById(restaurantOrCafeOrVendorId);
-    } else if (await Cafe.findById(restaurantOrCafeOrVendorId)) {
-      restaurantOrCafeOrVendor = await Cafe.findById(restaurantOrCafeOrVendorId);
-    } else if (await Vendor.findById(restaurantOrCafeOrVendorId)) {
-      restaurantOrCafeOrVendor = await Vendor.findById(restaurantOrCafeOrVendorId);
-    } else {
-      return res.status(404).json({ success: false, message: 'Restaurant, cafe, or vendor not found' });
-    }
-
-    // Add the restaurant, cafe, or vendor to the user's followingRestaurantsCafeVendors list
-    user.followingRestaurantsCafe.push(restaurantOrCafeOrVendorId);
+    // Add the restaurant, cafe, or vendor to the user's followingRestaurantsCafe list
+    user.followingRestaurantsCafe.push({ restaurantOrCafeId: restaurantOrCafeOrVendorId, category });
     await user.save();
 
     // Increment the followers count of the restaurant, cafe, or vendor
+    let restaurantOrCafeOrVendor;
+
+    if (category === 'restaurant') {
+      restaurantOrCafeOrVendor = await Restaurant.findById(restaurantOrCafeOrVendorId);
+    } else if (category === 'cafe') {
+      restaurantOrCafeOrVendor = await Cafe.findById(restaurantOrCafeOrVendorId);
+    } else if (category === 'vendor') {
+      restaurantOrCafeOrVendor = await Vendor.findById(restaurantOrCafeOrVendorId);
+    } else {
+      return res.status(400).json({ success: false, message: 'Invalid category' });
+    }
+
+    if (!restaurantOrCafeOrVendor) {
+      return res.status(404).json({ success: false, message: 'Restaurant, cafe, or vendor not found' });
+    }
+
     restaurantOrCafeOrVendor.followers += 1;
     await restaurantOrCafeOrVendor.save();
 
@@ -46,6 +135,8 @@ exports.followRestaurantOrCafe = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
   }
 };
+
+
 
 
 //filter location api done
@@ -247,5 +338,45 @@ exports.search= async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+//following list
+
+
+exports.followinglist= async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    const followingList = user.followingRestaurantsCafe; // Get the user's following list
+
+    const followingEntities = [];
+
+    for (const followItem of followingList) {
+      // Determine the category and retrieve the entity details
+      let entity;
+      if (followItem.category === 'restaurant') {
+        entity = await Restaurant.findById(followItem.restaurantOrCafeId);
+      } else if (followItem.category === 'cafe') {
+        entity = await Cafe.findById(followItem.restaurantOrCafeId);
+      } else if (followItem.category === 'vendor') {
+        entity = await Vendor.findById(followItem.restaurantOrCafeId);
+      }
+
+      if (entity) {
+        followingEntities.push(entity);
+      }
+    }
+
+    res.status(200).json({ success: true, data: followingEntities });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
   }
 };

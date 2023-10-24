@@ -1,0 +1,33 @@
+/* profile.css */
+.detail-main {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    z-index: 200000;
+    margin-top: 6rem;
+  }
+  
+  .details-profile {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    z-index: 200;
+  }
+  
+  .details-profile h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .details-profile span {
+    display: block; /* Display name and email on separate lines */
+    font-size: 18px;
+    margin: 10px 0;
+    color: #ffffff; /* Adjust the text color to make it visible */
+  }
+  
+  .card-following span{
+    color: white;
+  }

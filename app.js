@@ -25,7 +25,7 @@ const advertisement=require("./routes/advertisementRoute");
 const filter=require("./routes/filterRoutes");
 const openmap=require("./routes/mapRoute");
 const reel = require("./routes/reelsRoutes");
-
+const vendoradvertisement= require("./routes/vendoradvertisementRoute");
 //give the route to the api
 app.use("/api/v1", user);
 app.use("/api/v1",restaurant);
@@ -35,6 +35,7 @@ app.use("/api/v1", advertisement);
 app.use("/api/v1", filter);
 app.use("/api/v1", openmap);
 app.use("/api/v1", reel);
+app.use("/api/v1", vendoradvertisement);
 
 app.get('*',(req,res,next)=>{
     res.status(200).json({
