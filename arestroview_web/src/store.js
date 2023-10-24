@@ -22,14 +22,16 @@ import {
   filterItemsReducerres,
   restaurantReducer,
 } from "./reducers/restaurantReducer";
-import { filterItemsReducercafe } from "./reducers/cafeReducers";
+import { filterItemsReducercafe,
+cafeReducer } from "./reducers/cafeReducers";
 import { locationsReducer, 
           followReducer,
           searchReducer,
           followingReducer,
 } from "./reducers/nearmeReducer";
 import { filterItemsReducervendor ,
-        advertisementReducer  } from "./reducers/vendorReducer";
+        advertisementReducer,
+      vendorReducer  } from "./reducers/vendorReducer";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
@@ -44,6 +46,8 @@ const reducer = combineReducers({
   locationsReducer: locationsReducer,
   filterItemsReducervendor: filterItemsReducervendor,
   restaurantReducer: restaurantReducer,
+  cafeReducer:cafeReducer,
+  vendorReducer: vendorReducer,
   followReducer:followReducer,
   reelsReducer:reelsReducer,
   searchReducer:searchReducer,

@@ -4,7 +4,7 @@ const vendoradvertisementController = require('../controllers/vendoradvertisemen
 
 
 router.post('/createvendoradvertisement', vendoradvertisementController.createAdvertisement);
-router.get('/citybasedadvertisement/:city' ,vendoradvertisementController.getAdvertisementsByCity);
+router.get('/citybasedadvertisement/:city' ,vendoradvertisementController.getAdvertisementByCity);
 
 
 

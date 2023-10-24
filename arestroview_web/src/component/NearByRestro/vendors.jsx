@@ -109,6 +109,8 @@ const Vendor = () => {
             rating={vendor.ratings.average}
             image={waving}
             description={vendor.description}
+            restaurantId={vendor._id}
+            category="vendor"
           />
         ))}
       </div>

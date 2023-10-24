@@ -15,13 +15,20 @@ exports.createAdvertisement = async (req, res) => {
 };
 
 // Get vendor advertisements by city
-exports.getAdvertisementsByCity = async (req, res) => {
+exports.getAdvertisementByCity = async (req, res) => {
   try {
     const city = req.params.city; // Assuming you're passing the city as a parameter
-    const advertisements = await VendorAdvertisement.find({ city });
-    res.status(200).json({ success: true, data: advertisements });
+    const advertisement = await VendorAdvertisement.findOne({ city });
+    
+    if (!advertisement) {
+      res.status(404).json({ error: 'Advertisement not found' });
+      return;
+    }
+
+    res.status(200).json({ success: true, data: advertisement });
     
   } catch (err) {
-    res.status(500).json({ error: 'Error fetching vendor advertisements' });
+    res.status(500).json({ error: 'Error fetching vendor advertisement' });
   }
 };
+

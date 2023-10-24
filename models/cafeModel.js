@@ -5,6 +5,11 @@ const cafeSchema = new mongoose.Schema({
     type: String,
     required: [true,"Please give the name of a restaurant"],
   },
+  
+  title:{
+    type: String,
+    require: true,
+  },
   main_image:
     {
         public_id:{
@@ -77,6 +82,7 @@ const cafeSchema = new mongoose.Schema({
   ],
   special_daymenu: [
     {
+      category:String,
       itemName: String,
       description: String,
       price: Number,
@@ -144,7 +150,7 @@ const cafeSchema = new mongoose.Schema({
     },
   },
 
-  gallery:[{
+  gallery:{
     images:[
         {
             public_id:{
@@ -158,7 +164,7 @@ const cafeSchema = new mongoose.Schema({
         }
       ]
   }
-  ],
+  ,
   contact: {
     phone: String,
     email: String,
@@ -191,10 +197,6 @@ const cafeSchema = new mongoose.Schema({
     default:0,
   },
 
-  title:{
-    type: String,
-    require: true,
-  },
 });
 
 module.exports = mongoose.model('Cafe', cafeSchema);

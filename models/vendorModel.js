@@ -5,6 +5,11 @@ const vendorSchema = new mongoose.Schema({
     type: String,
     required: [true,"Please give the name of a restaurant"],
   },
+
+  title:{
+    type: String,
+    require: true,
+  },
   main_image:
     {
         public_id:{
@@ -60,13 +65,14 @@ const vendorSchema = new mongoose.Schema({
       default: 0,
     },
   },
+
   menu: [
     {
       itemName: String,
       category: String,
       description: String,
       price: Number,
-      img:[
+      img:
         {
             public_id:{
                 type:String,
@@ -77,15 +83,15 @@ const vendorSchema = new mongoose.Schema({
                 required:true,
             }
         }
-      ]
     },
   ],
- 
-  offers: [
+
+  special_daymenu: [
     {
-      name: String,
+      category:String,
+      itemName: String,
       description: String,
-      discount: Number,
+      price: Number,
       img:
         {
             public_id:{
@@ -100,6 +106,25 @@ const vendorSchema = new mongoose.Schema({
       
     },
   ],
+ 
+  offers: 
+  {
+    name: String,
+    description: String,
+    discount: Number,
+    img:
+      {
+          public_id:{
+              type:String,
+              required:true,
+          },
+          url:{
+              type:String,
+              required:true,
+          }
+      }
+    
+  },
   openingHours: {
     Monday: {
       open: String,
@@ -131,7 +156,7 @@ const vendorSchema = new mongoose.Schema({
     },
   },
 
-  gallery:[{
+  gallery:{
     images:[
         {
             public_id:{
@@ -145,7 +170,7 @@ const vendorSchema = new mongoose.Schema({
         }
       ]
   }
-  ],
+  ,
   contact: {
     phone: String,
     email: String,
@@ -178,10 +203,7 @@ const vendorSchema = new mongoose.Schema({
     default:0,
   },
 
-  title:{
-    type: String,
-    require: true,
-  },
+
 });
 
 module.exports = mongoose.model('Vendor', vendorSchema);

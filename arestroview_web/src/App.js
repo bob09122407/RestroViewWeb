@@ -12,6 +12,8 @@ import Filter from "./component/InsideRestro/inrestro.jsx";
 import Vendors from "./Screens/LandingPage/Vendors/vendors.jsx";
 import Detailsrestro from "./Screens/LandingPage/DetailsRestro/detailsrestro.jsx";
 import Profile from "./component/Profile/profile.jsx";
+import Detailscafe from "./Screens/LandingPage/DetailsRestro/detailcafe.jsx";
+import Detailsvendor from "./Screens/LandingPage/DetailsRestro/detailvendor.jsx";
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -37,6 +39,8 @@ const App = () => {
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/detailrestaurants/:id" element={<Detailsrestro />} />
+            <Route path="/detailcafes/:id" element={<Detailscafe />} />
+            <Route path="/detailvendors/:id" element={<Detailsvendor />} />
             <Route path="/filters/:category/:food" element={<Filter />} />
             <Route path="/portfolio" element={<Profile/>}/>
           </Routes>

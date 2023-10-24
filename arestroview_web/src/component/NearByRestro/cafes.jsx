@@ -109,6 +109,8 @@ const Cafe = () => {
             rating={cafe.ratings.average}
             image={waving}
             description={cafe.description}
+            restaurantId={cafe._id}
+            category="cafe"
           />
         ))}
       </div>

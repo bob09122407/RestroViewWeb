@@ -135,7 +135,7 @@ export const getAdvertisementsByCity = (city) => async (dispatch) => {
       payload: response,
       
     });
-    console.log(response.data);
+    console.log(response);
   } catch (error) {
     dispatch({
       type: GET_ADVERTISEMENTS_FAILURE,
