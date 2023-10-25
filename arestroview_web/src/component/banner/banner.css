@@ -68,7 +68,7 @@
     padding:10px 0;
 }
 
-.banner-container .banner .content .btn{
+.banner-container .banner .content .btn_offer{
     display: block;
     height:40px;
     width:150px;
@@ -77,6 +77,7 @@
     color:#000000;
     margin:5px auto;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 .banner-container .banner .women{

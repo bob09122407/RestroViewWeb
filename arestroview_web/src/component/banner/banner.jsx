@@ -16,7 +16,7 @@ const banner = () => {
         <span>upto</span>
         <h3>50% 0ff</h3>
         <p>offer ends after 5 days</p>
-        <a href="#" class="btn">veiw offer</a>
+        <a href="#" class="btn_offer">View offer</a>
     </div>
     <div class="women">
         <img src={Waving} alt=""/>

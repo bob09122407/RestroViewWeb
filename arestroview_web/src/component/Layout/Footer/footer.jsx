@@ -46,7 +46,7 @@ const Footer = () => {
                 <div className="footer-logo">
                   <a href="index.html">
                     <img
-                      src="https://i.postimg.cc/8kdzwwx4/pngwing-com.png"
+                      src="https://res.cloudinary.com/du1tas6pe/image/upload/v1698222318/gri625xv6g9uqtbjfpwc.png"
                       className="img-fluid"
                       alt="logo"
                       style={{ height: '75px' }}

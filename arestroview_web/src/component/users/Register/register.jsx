@@ -206,8 +206,7 @@ const Register = () => {
           <div className="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+            Ready to dive in? Sign up now and make the most of your experience.
             </p>
             <button className="btn transparent" onClick={toggleMode}>
               Sign up
@@ -221,8 +220,7 @@ const Register = () => {
           <div className="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+            Welcome back! Ready to continue your journey?
             </p>
             <button className="btn transparent" onClick={toggleMode}>
               Sign in
