@@ -4,30 +4,33 @@
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0;
-    z-index: 200000;
+    z-index: 2;
     margin-top: 6rem;
     align-items: center;
     justify-content: center;
   }
   
   .details-profile {
-    background-color: #fff;
+    position: relative;
+    visibility: visible;
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    z-index: 200;
+    z-index: 3;
   }
   
   .details-profile h1 {
     font-size: 24px;
     font-weight: bold;
+    color: white;
   }
   
   .details-profile span {
     display: block; /* Display name and email on separate lines */
     font-size: 18px;
     margin: 10px 0;
-    color: #ffffff; /* Adjust the text color to make it visible */
+    color: white; /* Adjust the text color to make it visible */
   }
   
   .card-following{
@@ -35,8 +38,16 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    color: white;
   }
-  
+
   .card-following span{
     color: white;
+  }
+
+  .followed{
+    color: white;
+    z-index: 4;
+    position: relative;
+    text-align: center;
   }

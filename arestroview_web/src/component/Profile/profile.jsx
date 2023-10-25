@@ -85,8 +85,9 @@ const Profile = () => {
           </div>
         )}
       </div>
+
+      <h1 className='followed'>Your Followed Places</h1>
       <div className="card-following">
-      <span>Your Followed Places</span>
       {followingList.map((place) => (
         <Card
           key={place._id} // Use a unique key for each Card component
@@ -101,7 +102,6 @@ const Profile = () => {
         
       ))}
       </div>
-
       <ToastContainer />
     </div>
   );
