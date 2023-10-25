@@ -21,7 +21,7 @@ const InCard = (props) => {
           </div>
           <div className="actionbtn">
             <button>Follow</button>
-            <button><Link to={`/detailrestaurants/${Id}`}>Details</Link></button>
+            <button><Link className='dets' to={`/detailrestaurants/${Id}`}>Details</Link></button>
           </div>
         </div>
       </div>

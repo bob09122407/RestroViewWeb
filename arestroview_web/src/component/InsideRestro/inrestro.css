@@ -79,13 +79,17 @@
   }
   
   .pagination .active a{
-    background-color: #007bff;
+    background-color: #000000;
+    color: #fff;
+  }
+  .pagination .disabled a{
+    background-color: #000000;
     color: #fff;
   }
 
   .under {
     text-decoration: none;
-    color: white;
+    color: white ;
   }
 
 

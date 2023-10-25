@@ -122,7 +122,7 @@ const Register = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <input type="submit" value="Login" className="btn solid" />
+            <input type="submit" value="Login" className="btnsolid" />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -177,7 +177,7 @@ const Register = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <input type="submit" className="btn" value="Sign up" />
+            <input type="submit" className="btnsolid" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -213,7 +213,7 @@ const Register = () => {
               Sign up
             </button>
           </div>
-          <div className="image">
+          <div className="image_change">
             <Lottie animationData={animationData1} />
           </div>
         </div>
@@ -228,7 +228,7 @@ const Register = () => {
               Sign in
             </button>
           </div>
-          <div className="image">
+          <div className="image_change">
             <Lottie animationData={animationData} />
           </div>
         </div>

@@ -157,3 +157,7 @@
     transform: rotateY(180deg);
   }
   
+  .details{
+    text-decoration: none;
+    color: white;
+  }

@@ -119,8 +119,8 @@
 
 .cardin .contentin .detailsin .actionbtn button:nth-child(2)
 {
-    border: 1px solid #999;
-    color: #999;
+    border: 1px solid #c02379;
+    color: hsl(0, 0%, 60%);
     background: #fff;
 }
 
@@ -130,3 +130,10 @@
 .detailsin{
     color: #555;
 }
+
+.dets{
+    text-decoration: none;
+    color: #ff5f95;
+    background-color: white;
+}
+
