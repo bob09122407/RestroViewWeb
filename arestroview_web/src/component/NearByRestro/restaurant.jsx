@@ -89,6 +89,7 @@ const Restaurant = () => {
             <div className="toggle-container">
               <label className="switch-label" htmlFor="toggle">Near Me</label>
               <input
+              className='input_button'
                 type="checkbox"
                 name="checkbox"
                 id="toggle"

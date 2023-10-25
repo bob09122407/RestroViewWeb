@@ -144,3 +144,10 @@ input[type="checkbox"] {
 .pagination .disabled a{
   color: white;
 }
+
+.switch-label{
+  color: white;
+  position: relative;
+  bottom: 10px;
+  right: 10px;
+}
