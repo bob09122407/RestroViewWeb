@@ -50,10 +50,22 @@ const SpecialMenu = ({ menu }) => {
             All
           </button>
           <button
-            className={activeCategory === 'Pizza' ? 'active' : ''}
-            onClick={() => handleCategoryFilterClick('Pizza')}
+            className={activeCategory === 'Roti' ? 'active' : ''}
+            onClick={() => handleCategoryFilterClick('Roti')}
           >
-            Pizza
+            Roti
+          </button>
+          <button
+            className={activeCategory === 'Sabji' ? 'active' : ''}
+            onClick={() => handleCategoryFilterClick('Sabji')}
+          >
+            Sabji
+          </button>
+          <button
+            className={activeCategory === 'Desert' ? 'active' : ''}
+            onClick={() => handleCategoryFilterClick('Desert')}
+          >
+            Desert
           </button>
           {/* Add more category filter buttons here */}
         </div>

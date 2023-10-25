@@ -61,7 +61,7 @@ export const getvendorById = (vendorId) => async (dispatch) => {
   dispatch({ type: GET_VENDOR_BY_ID_REQUEST });
 
   try {
-    const response = await axios.get(`api/v1/Vendors/${vendorId}`);
+    const response = await axios.get(`/api/v1/Vendors/${vendorId}`);
 
     dispatch({
       type: GET_VENDOR_BY_ID_SUCCESS,

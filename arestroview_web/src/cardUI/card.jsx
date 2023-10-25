@@ -128,7 +128,7 @@ console.log(isFollowing);
               <button onClick={() => handleFollow(restaurantId)}>
                 {isFollowing ? "Following" : "Follow"}
               </button>
-              <button><Link to={`/detailrestaurants/${restaurantId}`}>Details</Link></button>
+              <button><Link to={`/detailrestaurants/${category}/${restaurantId}`}>Details</Link></button>
             </div>
           </div>
         </div>

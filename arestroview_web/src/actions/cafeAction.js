@@ -55,8 +55,9 @@ export const getcafeById = (cafeId) => async (dispatch) => {
   dispatch({ type: GET_CAFE_BY_ID_REQUEST });
 
   try {
-    const response = await axios.get(`api/v1/Cafes//${cafeId}`);
-
+    console.log(cafeId);
+    const response = await axios.get(`/api/v1/Cafes/${cafeId}`);
+console.log(response);
     dispatch({
       type: GET_CAFE_BY_ID_SUCCESS,
       payload: response.data,
