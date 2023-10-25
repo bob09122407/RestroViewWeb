@@ -2,7 +2,7 @@ import React from 'react';
 import "./incard.css";
 import {Link} from "react-router-dom";
 const InCard = (props) => {
-  const { name, jobTitle, followers, open, post, imageSrc,Id } = props;
+  const { name, jobTitle, followers, open, post, imageSrc,Id, selectedCategory } = props;
 
   return (
     <div className="cardin" style={{ margin: '25px' }}>
@@ -21,7 +21,7 @@ const InCard = (props) => {
           </div>
           <div className="actionbtn">
             <button>Follow</button>
-            <button><Link className='dets' to={`/detailrestaurants/${Id}`}>Details</Link></button>
+            <button><Link className='dets' to={`/detailrestaurants/${selectedCategory}/${Id}`}>Details</Link></button>
           </div>
         </div>
       </div>

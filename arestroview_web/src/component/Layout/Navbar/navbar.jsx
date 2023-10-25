@@ -129,7 +129,7 @@ const handleSearch = async () => {
                     </ul>
                 </div>
 
-                <Link to="/signup">
+                <Link to="/signup" className='sign_up'>
                     <BiLogIn className="nav__login-icon" size={30} />
                 </Link>
             </nav>

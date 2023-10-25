@@ -459,3 +459,11 @@ img {
 ol, ul{
   padding-left: 0 !important;
 }
+
+.sign_up{
+  color: white;
+}
+
+.nav__search-icon{
+  color: white;
+}

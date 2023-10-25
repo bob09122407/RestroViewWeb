@@ -6,6 +6,8 @@
     margin: 20px 0;
     z-index: 200000;
     margin-top: 6rem;
+    align-items: center;
+    justify-content: center;
   }
   
   .details-profile {
@@ -28,6 +30,12 @@
     color: #ffffff; /* Adjust the text color to make it visible */
   }
   
+  .card-following{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
   .card-following span{
     color: white;
   }

@@ -127,6 +127,7 @@ const Sidebar = () => {
               open="100"
               imageSrc={item.main_image.url} 
               Id={item._id}
+              selectedCategory= {selectedCategory}
             />
           ))}
         </div>
