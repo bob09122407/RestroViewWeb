@@ -25,6 +25,66 @@ const videos = [
     likes: 800,
     shares: 300,
   },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
+  {
+    src: video3,
+    username: "user2",
+    likes: 800,
+    shares: 300,
+  },
   // Add more video objects with details
 ];
 
