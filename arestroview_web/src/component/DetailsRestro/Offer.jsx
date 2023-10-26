@@ -23,8 +23,8 @@ const Chef = ({name,image, description, discount}) => (
 
       <div className="app__chef-sign">
         <p>{discount}</p>
-        <p className="p__opensans">Chef & Founder</p>
-        <img src={images.sign} alt="sign_image" />
+        <p className="p__opensans">Avail your discount now</p>
+        {/* <img src={images.sign} alt="sign_image" /> */}
       </div>
     </div>
   </div>
