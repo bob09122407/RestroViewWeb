@@ -12,28 +12,28 @@ import Faqs from "../Faqs/index.js";
 const faqsList = [
   {
     id: 0,
-    questionText: 'What is IRC?',
+    questionText: 'Who are we?',
     answerText:
-      'IRC is an Industry Ready Certification that represents your readiness for a job with the necessary skills.',
+      'We are team RestroView who wants to make a indias largest marketing platform for the restaurant industry',
   },
   {
     id: 1,
-    questionText: 'What is the medium of instruction?',
+    questionText: 'What it includes',
     answerText:
-      'The courses would be delivered in English and Telugu. The program will be available in more vernacular languages soon.',
+      'The banner advertisement, reel advertisements and special personalize notification features at a one place',
   },
   {
     id: 2,
     questionText:
-      'Is there an EMI option to pay the fee for CCBP Tech 4.0 Intensive?',
+      'When our application will launch',
     answerText:
-      'Yes, EMI support is available for credit cards. Please select EMI option while making payment for more information.',
+      'Within 3-4 months',
   },
   {
     id: 3,
-    questionText: 'How will my doubts be cleared? What is the mechanism?',
+    questionText: 'Why to choose us',
     answerText:
-      'You can ask your doubts in the discussions section and course mentor will answer them. You can also see the doubts asked by other students.',
+      'Indias most trusted platform',
   },
 ]
 const Home = () => {
@@ -61,7 +61,7 @@ const Home = () => {
       {/* /*isko component banana hai props pass karke use kar paaye aisa*/}
     <Appfeature/>
     <div className="team-main">
-    <Team/>
+    {/* <Team/> */}
 
     </div>
     <Faqs faqsList={faqsList} />

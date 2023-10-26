@@ -98,6 +98,7 @@ const Profile = () => {
           image={waving}
           description={place.description}
           restaurantId={place._id}
+          category="restaurant"
         />
         
       ))}

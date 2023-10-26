@@ -16,7 +16,7 @@ import {
   cafeAdvertisementReducer,
 } from "./reducers/advertisementReducer";
 import{
-  reelsReducer
+  reelsReducer,
 } from "./reducers/reelReducer";
 import {
   filterItemsReducerres,

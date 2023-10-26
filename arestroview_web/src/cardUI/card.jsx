@@ -99,15 +99,9 @@ console.log(isFollowing);
       // console.log(response);
       if (follow && follow.success) {
         toast.success(follow.data.message); // Show success message
-      } else {
-        toast.error(follow.error.message); // Show a generic error message
       }
     } catch (error) {
-      if (error && error.response && error.response.data) {
-        toast.error(error.response.data.message); // Show error message from the server
-      } else {
-        toast.error('Follow failed: Unknown error'); // Show a generic error message
-      }
+      
     }
   };
 

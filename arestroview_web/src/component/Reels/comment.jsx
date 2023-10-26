@@ -1,11 +1,17 @@
 // CommentBox.js
 import React, { useState } from 'react';
 import './CommentBox.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {addCommentToReel} from "../../actions/reelAction";
-const CommentBox = ({ onClose, comments,reelId }) => {
+const CommentBox = ({ onClose,reelId }) => {
 
-
+  const comments = useSelector((state) => {
+   
+    const reels = state.reelsReducer.reelall.data;
+  
+    const reel = reels.find((r) => r._id === reelId);
+    return reel ? reel.comments : [];
+  });
   const [comment, setComment] = useState('');
   const [name, setUsername] = useState(''); // You can get the username from the user's session or input
 
@@ -59,3 +65,4 @@ const CommentBox = ({ onClose, comments,reelId }) => {
 };
 
 export default CommentBox;
+

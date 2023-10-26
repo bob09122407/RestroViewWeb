@@ -10,6 +10,14 @@
   display: block !important;
 }
 
+.buttonss:hover{
+  background: transparent;
+  color: white;
+}
+.buttonss{
+  background: transparent;
+  color: white;
+}
 .question-container {
   display: flex;
   flex-direction: row;

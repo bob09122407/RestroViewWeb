@@ -31,10 +31,18 @@
   font-size: 24px;
   margin-bottom: 10px;
   margin-top: 2rem;
+  z-index: 2;
 }
 
 @media screen and (max-width: 768px) {
   .container10 {
     flex-direction: column; /* Stack slides on smaller screens */
+  }
+  .slide-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: -4rem;
+    z-index: 2;
   }
 }

@@ -39,7 +39,7 @@
 // Video.js
 import React, { useRef, useEffect, useState } from 'react';
 import './reels.css';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart ,AiFillHeart} from 'react-icons/ai';
 import { BiCommentDetail } from 'react-icons/bi';
 import { BsSave } from 'react-icons/bs';
 import CommentBox from './comment'; // Import the CommentBox component
@@ -57,6 +57,14 @@ const Video = ({ src, isActive, likes, comments, id }) => {
     }
   }, [isActive]);
 
+  const [isLiked, setIsLiked] = useState(false); // State to track whether the video is liked
+
+  // ...rest of your code
+
+  const toggleLike = () => {
+    // Toggle the like state when the heart icon is clicked
+    setIsLiked(!isLiked);
+  };
   const openCommentBox = () => {
     setShowCommentBox(true);
   };
@@ -78,7 +86,12 @@ const Video = ({ src, isActive, likes, comments, id }) => {
         Your browser does not support the video tag.
       </video>
       <div className="icon-home">
-        <AiOutlineHeart className="home-icon" color="white" size="40px" />
+        {/* <AiOutlineHeart className="home-icon" color="white" size="40px" /> */}
+        {isLiked ? (
+          <AiFillHeart className="home-icon" color="red" size="40px" onClick={toggleLike} />
+        ) : (
+          <AiOutlineHeart className="home-icon" color="white" size="40px" onClick={toggleLike} />
+        )}
         <BiCommentDetail
           className="comment-icon"
           color="white"

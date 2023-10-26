@@ -24,20 +24,24 @@ const handleSearchResult = () => {
     // Check if the search result is not null and contains the restaurant, cafe, or vendor data
     if (searchResults && (searchResults.restaurants || searchResults.cafes || searchResults.vendors)) {
         let idToNavigate;
+        let place;
 
         if (searchResults.restaurants && searchResults.restaurants.length > 0) {
+            place="restaurant";
             // If there are restaurant results, use the _id from the first restaurant
             idToNavigate = searchResults.restaurants[0]._id;
         } else if (searchResults.cafes && searchResults.cafes.length > 0) {
+            place="cafe";
             // If there are cafe results, use the _id from the first cafe
             idToNavigate = searchResults.cafes[0]._id;
         } else if (searchResults.vendors && searchResults.vendors.length > 0) {
+            place="vendor";
             // If there are vendor results, use the _id from the first vendor
             idToNavigate = searchResults.vendors[0]._id;
         }
 
         // Navigate to the details page using the extracted _id
-        navigate(`/detailrestaurants/${idToNavigate}`);
+        navigate(`/detailrestaurants/${place}/${idToNavigate}`);
     }
 };
 
@@ -129,7 +133,7 @@ const handleSearch = async () => {
                     </ul>
                 </div>
 
-                <Link to="/signup" className='sign_up'>
+                <Link to="/signup">
                     <BiLogIn className="nav__login-icon" size={30} />
                 </Link>
             </nav>

@@ -23,10 +23,7 @@ const slides = [
     name: 'Burger',
     img: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=410&q=80',
   },
-  {
-    name: 'Dabeli',
-    img: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto.format&fit=crop&w=449&q=80',
-  },
+  
   {
     name: 'Dabeli',
     img: 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80',
@@ -35,10 +32,7 @@ const slides = [
     name: 'Chicken burger',
     img: 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80',
   },
-  {
-    name: 'Chicken burger',
-    img: 'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80',
-  },
+
 ];
 
 const FoodSlide = () => {
@@ -61,6 +55,7 @@ const FoodSlide = () => {
         modifier: 4,
         slideShadows: false,
       }}
+      
       keyboard={{ enabled: true }}
       mousewheel={{ thresholdDelta: 70 }}
       initialSlide={0}

@@ -37,7 +37,7 @@ class FaqItem extends Component {
     const altText = isActive ? 'minus' : 'plus'
 
     return (
-      <button className="button" type="button" onClick={this.onToggleIsActive}>
+      <button className="buttonss" type="button" onClick={this.onToggleIsActive}>
         <img src={image} alt={altText} className="image" />
       </button>
     )

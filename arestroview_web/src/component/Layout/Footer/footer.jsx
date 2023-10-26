@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker, faPhone, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter, faGooglePlus } from '@fortawesome/free-brands-svg-icons';
 import './footer.css';
+import { saveUserData } from "../../../actions/emailAction";
+import { useDispatch, useSelector } from 'react-redux';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.userLogin.userInfo?._id || state.userRegister.userInfo?._id);
+console.log(userId);
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the form from submitting and page reload
+    if (email && userId) {
+      console.log(email);
+      dispatch(saveUserData(email, userId)); // Dispatch the action with email and user ID
+      // You can also clear the email field after submission
+      setEmail('');
+    }
+  };
+
   return (
     <footer className="footer-section">
       <div className="container">
@@ -80,16 +98,13 @@ const Footer = () => {
                   <h3>Useful Links</h3>
                 </div>
                 <ul>
-                  <li><a class="a_footer" href="#">Home</a></li>
-                  <li><a class="a_footer" href="#">about</a></li>
-                  <li><a class="a_footer" href="#">services</a></li>
-                  <li><a class="a_footer" href="#">portfolio</a></li>
-                  <li><a class="a_footer" href="#">Contact</a></li>
-                  <li><a class="a_footer" href="#">About us</a></li>
-                  <li><a class="a_footer" href="#">Our Services</a></li>
-                  <li><a class="a_footer" href="#">Expert Team</a></li>
-                  <li><a class="a_footer" href="#">Contact us</a></li>
-                  <li><a class="a_footer" href="#">Latest News</a></li>
+                  <li><a className="a_footer" href="/home">Home</a></li>
+                  {/* <li><a className="a_footer" href="#">about</a></li> */}
+                  <li><a className="a_footer" href="/vendors">Vendor</a></li>
+                  <li><a className="a_footer" href="/portfolio">portfolio</a></li>
+                  <li><a className="a_footer" href="/reels">Reels</a></li>
+                  <li><a className="a_footer" href="/filters">Filters</a></li>
+                  <li><a className="a_footer" href="/">Landing</a></li>
                 </ul>
               </div>
             </div>
@@ -102,9 +117,17 @@ const Footer = () => {
                   <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
                 </div>
                 <div className="subscribe-form">
-                  <form action="#">
-                    <input class="e_mail" type="text" placeholder="Email Address" />
-                    <button class="submit_btn"><i className="fa fa-telegram"></i></button>
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      className="e_mail"
+                      type="text"
+                      placeholder="Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)} // Update email state
+                    />
+                    <button className="submit_btn" type="submit">
+                      
+                    </button>
                   </form>
                 </div>
               </div>
@@ -123,11 +146,12 @@ const Footer = () => {
             <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
               <div className="footer-menu">
                 <ul>
-                  <li><a class="a_footer" href="#">Home</a></li>
-                  <li><a class="a_footer" href="#">Terms</a></li>
-                  <li><a class="a_footer" href="#">Privacy</a></li>
-                  <li><a class="a_footer" href="#">Policy</a></li>
-                  <li><a class="a_footer" href="#">Contact</a></li>
+                  <li><a className="a_footer" href="/home">Home</a></li>
+                  <li><a className="a_footer" href="/vendors">Vendor</a></li>
+                  <li><a className="a_footer" href="/portfolio">portfolio</a></li>
+                  <li><a className="a_footer" href="/reels">Reels</a></li>
+                  <li><a className="a_footer" href="/filters">Filters</a></li>
+                  <li><a className="a_footer" href="/">Landing</a></li>
                 </ul>
               </div>
             </div>
@@ -136,6 +160,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
