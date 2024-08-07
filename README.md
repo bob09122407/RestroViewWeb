@@ -4,7 +4,7 @@
 
 ## Description
 
-Briefly describe your project and what it does. Highlight the main features and functionality.
+RestroView is a pioneering web platform developed to create India's largest and most comprehensive advertising space for restaurants, cafes, and vendors. Utilizing the MERN stack (MongoDB, Express.js, React.js, and Node.js), this project aims to connect food and beverage establishments with potential customers through an interactive and user-friendly interface.
 
 ## Table of Contents
 
