@@ -1,6 +1,6 @@
 # RestroView
 
-![Nodejs](https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg)
+![Nodejs](https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg)             ![React CI](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)
 
 ## Description
 
